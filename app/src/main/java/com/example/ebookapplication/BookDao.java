@@ -13,13 +13,13 @@ import java.util.List;
 public interface BookDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertProject(BookModel projectModel);
+    void insertBook(BookModel bookModel);
 
     @Update
-    void updateProject(BookModel projectModel);
+    void updateBook(BookModel bookModel);
 
     @Delete
-    void deleteProject(BookModel projectModel);
+    void deleteBook(BookModel bookModel);
 
     @Query("SELECT * FROM book")
     LiveData<List<BookModel>> getAllBooksLive();

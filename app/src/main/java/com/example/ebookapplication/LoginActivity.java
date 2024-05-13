@@ -1,5 +1,6 @@
 package com.example.ebookapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -49,6 +50,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, StartActivity.class);
+                startActivity(intent);
             }
         });
     }

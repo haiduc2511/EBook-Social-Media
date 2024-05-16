@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BookDetailActivity">
+
+
+    <ImageView
+        android:id="@+id/iv_book_cover"
+        android:layout_width="163dp"
+        android:layout_height="177dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/im_book_cover" />
+
+    <TextView
+        android:id="@+id/tv_book_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Tên sách"
+        app:layout_constraintStart_toEndOf="@+id/iv_book_cover"
+        app:layout_constraintTop_toTopOf="@+id/iv_book_cover" />
+
+    <TextView
+        android:id="@+id/tv_author_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Tên tác giả"
+        app:layout_constraintStart_toEndOf="@+id/iv_book_cover"
+        app:layout_constraintTop_toBottomOf="@+id/tv_book_title" />
+    <TextView
+        android:id="@+id/tv_page_number"
+        android:layout_width="65dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Số trang"
+        app:layout_constraintStart_toEndOf="@+id/iv_book_cover"
+        app:layout_constraintTop_toBottomOf="@+id/tv_author_name" />
+
+    <TextView
+        android:id="@+id/tv_book_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Rating mấy sao"
+        app:layout_constraintStart_toStartOf="@+id/iv_book_cover"
+        app:layout_constraintTop_toBottomOf="@+id/iv_book_cover" />
+
+    <TextView
+        android:id="@+id/tv_book_summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="23dp"
+        android:text="tóm tắt"
+        app:layout_constraintStart_toStartOf="@+id/iv_book_cover"
+        app:layout_constraintTop_toBottomOf="@+id/tv_book_rating" />
+
+    <TextView
+        android:id="@+id/tv_book_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Thể loại"
+        app:layout_constraintStart_toEndOf="@+id/iv_book_cover"
+        app:layout_constraintTop_toBottomOf="@+id/tv_page_number" />
+</androidx.constraintlayout.widget.ConstraintLayout>

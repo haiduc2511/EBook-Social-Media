@@ -1,4 +1,4 @@
-package com.example.ebookapplication;
+package com.example.ebookapplication.Adapter;
 
 import static androidx.core.content.ContextCompat.startActivity;
 
@@ -6,14 +6,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ebookapplication.BookDetailActivity;
+import com.example.ebookapplication.BookModel;
+import com.example.ebookapplication.R;
 import com.example.ebookapplication.databinding.ItemBookBinding;
 
 import java.util.List;
@@ -46,7 +47,13 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         if (!bookModelList.isEmpty()) {
             BookModel bookModel = bookModelList.get(position);
             holder.binding.setBookModel(bookModel);
-
+            holder.binding.cvMain.setOnClickListener(v -> {
+                Intent intent = new Intent(context, BookDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("Book's Id", bookModel.bId);
+                intent.putExtras(bundle);
+                startActivity(context, intent, bundle);
+            });
         }
     }
 

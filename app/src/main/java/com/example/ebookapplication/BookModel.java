@@ -17,7 +17,8 @@ public class BookModel implements Parcelable {
     public String bookTitle;
     public String authorName;
     public int numberOfPages;
-    public String uploadDate;
+    public String bookCategory;
+    public String bookSummary;
     public BookModel() {
     }
 
@@ -26,7 +27,8 @@ public class BookModel implements Parcelable {
         bookTitle = in.readString();
         authorName = in.readString();
         numberOfPages = in.readInt();
-        uploadDate = in.readString();
+        bookCategory = in.readString();
+        bookSummary = in.readString();
     }
 
     @Override
@@ -35,7 +37,8 @@ public class BookModel implements Parcelable {
         dest.writeString(bookTitle);
         dest.writeString(authorName);
         dest.writeInt(numberOfPages);
-        dest.writeString(uploadDate);
+        dest.writeString(bookCategory);
+        dest.writeString(bookSummary);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.ebookapplication;
+package com.example.ebookapplication.ViewModel;
 
 import android.app.Application;
 
@@ -7,6 +7,9 @@ import androidx.lifecycle.LiveData;
 
 
 import androidx.lifecycle.AndroidViewModel;
+
+import com.example.ebookapplication.Database.AppRepo;
+import com.example.ebookapplication.BookModel;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -34,6 +37,9 @@ public class BookViewModel extends AndroidViewModel {
 
     public List<BookModel> getAllBooksFuture() throws ExecutionException, InterruptedException {
         return appRepo.getAllBooksFuture();
+    }
+    public BookModel getBook(int id) throws ExecutionException, InterruptedException {
+        return appRepo.getBook(id);
     }
 
     public LiveData<List<BookModel>> getAllBooksLive() {

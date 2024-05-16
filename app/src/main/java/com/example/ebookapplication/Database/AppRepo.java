@@ -1,8 +1,10 @@
-package com.example.ebookapplication;
+package com.example.ebookapplication.Database;
 
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
+
+import com.example.ebookapplication.BookModel;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -70,5 +72,17 @@ public class AppRepo {
         return appDatabase.bookDao().getAllBooksLive();
 
 
+    }
+
+    public BookModel getBook(int id) throws ExecutionException, InterruptedException {
+        Callable<BookModel> callable = new Callable<BookModel>() {
+            @Override
+            public BookModel call() throws Exception {
+                return appDatabase.bookDao().getBook(id);
+            }
+        };
+
+        Future<BookModel> future = Executors.newSingleThreadExecutor().submit(callable);
+        return future.get();
     }
 }

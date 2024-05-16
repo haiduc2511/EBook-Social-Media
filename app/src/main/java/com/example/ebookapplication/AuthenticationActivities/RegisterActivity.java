@@ -1,6 +1,5 @@
-package com.example.ebookapplication;
+package com.example.ebookapplication.AuthenticationActivities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -11,7 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.ebookapplication.databinding.ActivityLoginBinding;
+import com.example.ebookapplication.R;
 import com.example.ebookapplication.databinding.ActivityRegisterBinding;
 import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;

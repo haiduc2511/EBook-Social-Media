@@ -1,8 +1,7 @@
-package com.example.ebookapplication;
+package com.example.ebookapplication.AuthenticationActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +9,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.ebookapplication.R;
 import com.example.ebookapplication.databinding.ActivityMainBinding;
 
 

@@ -1,4 +1,4 @@
-package com.example.ebookapplication;
+package com.example.ebookapplication.AuthenticationActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.ebookapplication.R;
+import com.example.ebookapplication.StartActivity;
 import com.example.ebookapplication.databinding.ActivityLoginBinding;
-import com.example.ebookapplication.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -38,9 +39,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initUI() {
 
-        String password = binding.etPassword.getText().toString();
-        String email = binding.etEmail.getText().toString();
+
         binding.btLogin.setOnClickListener(v -> {
+            String password = binding.etPassword.getText().toString();
+            String email = binding.etEmail.getText().toString();
+            Toast.makeText(LoginActivity.this, "click bt login", Toast.LENGTH_SHORT).show();
             signIn(email, password);
         });
     }

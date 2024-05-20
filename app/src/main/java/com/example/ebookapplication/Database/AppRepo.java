@@ -1,10 +1,12 @@
 package com.example.ebookapplication.Database;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
 import com.example.ebookapplication.BookModel;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -14,6 +16,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class AppRepo {
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private AppDatabase appDatabase;
     private Executor executor = Executors.newSingleThreadExecutor();
@@ -85,4 +88,36 @@ public class AppRepo {
         Future<BookModel> future = Executors.newSingleThreadExecutor().submit(callable);
         return future.get();
     }
+
+//    private void addBookToFirebase(BookModel bookModel) {
+//        String bId = db.collection("books").document().getId();
+//        bookModel.bId = Integer.parseInt(bId);
+//        db.collection("books").document(bId).set(bookModel)
+//                .addOnSuccessListener(aVoid -> {
+//                    Log.d("Firestore", "Book successfully added!");
+//                })
+//                .addOnFailureListener(e -> {
+//                    Log.w("Firestore", "Error adding book", e);
+//                });
+//    }
+//
+//    private void updateBookToFirebase(BookModel bookModel) {
+//        db.collection("books").document(book.getId()).set(book, SetOptions.merge())
+//                .addOnSuccessListener(aVoid -> {
+//                    Log.d("Firestore", "Book successfully updated!");
+//                })
+//                .addOnFailureListener(e -> {
+//                    Log.w("Firestore", "Error updating book", e);
+//                });
+//    }
+//
+//    private void deleteBookToFirebase(BookModel bookModel) {
+//        db.collection("books").document(bookId).delete()
+//                .addOnSuccessListener(aVoid -> {
+//                    Log.d("Firestore", "Book successfully deleted!");
+//                })
+//                .addOnFailureListener(e -> {
+//                    Log.w("Firestore", "Error deleting book", e);
+//                });
+//    }
 }

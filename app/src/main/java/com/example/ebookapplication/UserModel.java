@@ -3,7 +3,6 @@ package com.example.ebookapplication;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -16,7 +15,7 @@ public class UserModel implements Parcelable {
     public String userName;
     public String userEmail;
 
-    public String userAge;
+    public int userAge;
     public String userGender;
     public int userFollowers;
     public UserModel() {
@@ -26,7 +25,7 @@ public class UserModel implements Parcelable {
         uId = in.readInt();
         userName = in.readString();
         userEmail = in.readString();
-        userAge = in.readString();
+        userAge = in.readInt();
         userGender = in.readString();
         userFollowers = in.readInt();
     }
@@ -36,7 +35,7 @@ public class UserModel implements Parcelable {
         dest.writeInt(uId);
         dest.writeString(userName);
         dest.writeString(userEmail);
-        dest.writeString(userAge);
+        dest.writeInt(userAge);
         dest.writeString(userGender);
         dest.writeInt(userFollowers);
     }

@@ -10,11 +10,17 @@ import androidx.lifecycle.AndroidViewModel;
 
 import com.example.ebookapplication.Database.AppRepo;
 import com.example.ebookapplication.BookModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class BookViewModel extends AndroidViewModel {
+    private static final String COLLECTION_NAME = "books";
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private AppRepo appRepo;
 
@@ -44,6 +50,33 @@ public class BookViewModel extends AndroidViewModel {
 
     public LiveData<List<BookModel>> getAllBooksLive() {
         return appRepo.getAllBooksLive();
+    }
+
+    public void addBookFirebase(BookModel bookModel, OnCompleteListener<DocumentReference> onCompleteListener) {
+        db.collection(COLLECTION_NAME).add(bookModel).addOnCompleteListener(onCompleteListener);
+    }
+
+    // Read all books
+    public void getBooksFirebase(OnCompleteListener<QuerySnapshot> onCompleteListener) {
+        db.collection(COLLECTION_NAME).get().addOnCompleteListener(onCompleteListener);
+    }
+
+    // Update a book
+    public void updateBookFirebase(String id, BookModel book, OnCompleteListener<Void> onCompleteListener) {
+        db.collection(COLLECTION_NAME).document(id).set(book).addOnCompleteListener(onCompleteListener);
+    }
+
+    // Delete a book
+    public void deleteBookFirebase(String id, OnCompleteListener<Void> onCompleteListener) {
+        db.collection(COLLECTION_NAME).document(id).delete().addOnCompleteListener(onCompleteListener);
+    }
+
+    // Get books by author
+    public void getBooksByIdFirebase(String bId, OnCompleteListener<QuerySnapshot> onCompleteListener) {
+        db.collection(COLLECTION_NAME)
+                .whereEqualTo("bId", bId)
+                .get()
+                .addOnCompleteListener(onCompleteListener);
     }
 
 }

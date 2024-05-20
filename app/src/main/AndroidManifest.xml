@@ -13,13 +13,19 @@
         android:theme="@style/Theme.EBookApplication"
         tools:targetApi="31">
         <activity
+            android:name=".AddBookActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserActivity"
+            android:exported="false" />
+        <activity
             android:name=".BookDetailActivity"
             android:exported="false" />
         <activity
             android:name=".BookListActivity"
             android:exported="false" />
         <activity
-            android:name=".AuthenticationActivities.MainActivity"
+            android:name=".StartActivity"
             android:exported="false" />
         <activity
             android:name=".AuthenticationActivities.RegisterActivity"
@@ -28,7 +34,7 @@
             android:name=".AuthenticationActivities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".StartActivity"
+            android:name=".AuthenticationActivities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

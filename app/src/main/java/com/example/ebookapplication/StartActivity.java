@@ -32,6 +32,18 @@ public class StartActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        binding.floatingActionButton.setOnClickListener(v -> {
+            Toast.makeText(this, "vô User Activity", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(StartActivity.this, UserActivity.class);
+            startActivity(intent);
+        });
+
+        binding.button3.setOnClickListener(v -> {
+            Toast.makeText(this, "vô Add Book Activity", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(StartActivity.this, AddBookActivity.class);
+            startActivity(intent);
+        });
+
     }
 
 

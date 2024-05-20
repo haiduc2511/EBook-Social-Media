@@ -3,6 +3,7 @@ package com.example.ebookapplication;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -57,4 +58,15 @@ public class BookModel implements Parcelable {
             return new BookModel[size];
         }
     };
+
+    @NonNull
+    @Override
+    public String toString() {
+        String information = bookTitle + "\n" +
+                authorName + "\n" +
+                numberOfPages + "\n" +
+                bookCategory + "\n" +
+                bookSummary ;
+        return information;
+    }
 }

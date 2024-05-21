@@ -44,6 +44,7 @@ public class AddBookActivity extends AppCompatActivity {
             bookModel.authorName = binding.etAuthorName.getText().toString();
             bookModel.numberOfPages = Integer.parseInt(binding.etNumPages.getText().toString());
             bookModel.bookSummary = binding.etSummary.getText().toString();
+            bookModel.bookCategory = binding.etCategory.getText().toString();
             Toast.makeText(this, bookModel.toString(), Toast.LENGTH_SHORT).show();
             bookViewModel.addBookFirebase(bookModel, new OnCompleteListener<DocumentReference>() {
                 @Override

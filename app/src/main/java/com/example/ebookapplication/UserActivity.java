@@ -19,7 +19,6 @@ public class UserActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     ActivityUserBinding binding;
-    UserModel user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -62,11 +62,11 @@ public class BookModel implements Parcelable {
     @NonNull
     @Override
     public String toString() {
-        String information = bookTitle + "\n" +
-                authorName + "\n" +
-                numberOfPages + "\n" +
-                bookCategory + "\n" +
-                bookSummary ;
+        String information = "Title" + bookTitle + "\n" +
+                "AuthorName" + authorName + "\n" +
+                "numberOfPages" + numberOfPages + "\n" +
+                "bookCategory" + bookCategory + "\n" +
+                "bookSummary" + bookSummary ;
         return information;
     }
 }

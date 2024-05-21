@@ -37,26 +37,17 @@ public class BookDetailActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        int bId = getIntent().getExtras().getInt("Book's Id", -1);
+        bookModel = getIntent().getParcelableExtra("book");
         bookViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookViewModel.class);
-
-        try {
-            bookModel = bookViewModel.getBook(bId);
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 
     private void initUI() {
-        binding.tvBookTitle.setText(bookModel.bookTitle);
-        binding.tvAuthorName.setText(bookModel.authorName);
+        binding.tvBookTitle.setText("" + bookModel.bookTitle);
+        binding.tvAuthorName.setText("" + bookModel.authorName);
         binding.tvPageNumber.setText("" + bookModel.numberOfPages);
-        binding.tvBookCategory.setText(bookModel.bookCategory);
+        binding.tvBookCategory.setText("" + bookModel.bookCategory);
         binding.tvBookRating.setText("chua biet de tam la 4.5 sao");
-        binding.tvBookSummary.setText(bookModel.bookSummary);
+        binding.tvBookSummary.setText("" + bookModel.bookSummary);
 
     }
 }

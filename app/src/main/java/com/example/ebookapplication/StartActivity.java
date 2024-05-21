@@ -44,6 +44,12 @@ public class StartActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        binding.button2.setOnClickListener(v -> {
+            Toast.makeText(this, "vô lướt mạng xã hội sách Activity", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(StartActivity.this, BookRecommendListActivity.class);
+            startActivity(intent);
+        });
+
     }
 
 

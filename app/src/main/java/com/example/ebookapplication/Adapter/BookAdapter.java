@@ -49,10 +49,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             holder.binding.setBookModel(bookModel);
             holder.binding.cvMain.setOnClickListener(v -> {
                 Intent intent = new Intent(context, BookDetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("Book's Id", bookModel.bId);
-                intent.putExtras(bundle);
-                startActivity(context, intent, bundle);
+                intent.putExtra("book", bookModel);
+                context.startActivity(intent);
             });
         }
     }

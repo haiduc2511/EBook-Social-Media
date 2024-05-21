@@ -46,11 +46,11 @@ public class AddBookActivity extends AppCompatActivity {
             bookModel.bookSummary = binding.etSummary.getText().toString();
             bookModel.bookCategory = binding.etCategory.getText().toString();
             Toast.makeText(this, bookModel.toString(), Toast.LENGTH_SHORT).show();
-            bookViewModel.addBookFirebase(bookModel, new OnCompleteListener<DocumentReference>() {
+            bookViewModel.addBookFirebase(bookModel, new OnCompleteListener<Void>() {
                 @Override
-                public void onComplete(@NonNull Task<DocumentReference> task) {
+                public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        Log.d(TAG, "Book added with ID: " + task.getResult().getId());
+                        Log.d(TAG, "Book added with ID: " + task.getResult().toString());
                     } else {
                         Log.w(TAG, "Error adding book", task.getException());
                     }

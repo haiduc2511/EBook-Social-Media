@@ -28,6 +28,7 @@ public interface BookDao {
 
     @Query("SELECT * FROM book")
     List<BookModel> getAllBooksFuture();
+
     @Query("SELECT * FROM book")
     List<BookModel> getAllBooks();
 

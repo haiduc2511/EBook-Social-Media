@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 
 import com.example.ebookapplication.BookModel;
+import com.example.ebookapplication.PageModel;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -89,35 +90,61 @@ public class AppRepo {
         return future.get();
     }
 
-//    private void addBookToFirebase(BookModel bookModel) {
-//        String bId = db.collection("books").document().getId();
-//        bookModel.bId = Integer.parseInt(bId);
-//        db.collection("books").document(bId).set(bookModel)
-//                .addOnSuccessListener(aVoid -> {
-//                    Log.d("Firestore", "Book successfully added!");
-//                })
-//                .addOnFailureListener(e -> {
-//                    Log.w("Firestore", "Error adding book", e);
-//                });
-//    }
-//
-//    private void updateBookToFirebase(BookModel bookModel) {
-//        db.collection("books").document(book.getId()).set(book, SetOptions.merge())
-//                .addOnSuccessListener(aVoid -> {
-//                    Log.d("Firestore", "Book successfully updated!");
-//                })
-//                .addOnFailureListener(e -> {
-//                    Log.w("Firestore", "Error updating book", e);
-//                });
-//    }
-//
-//    private void deleteBookToFirebase(BookModel bookModel) {
-//        db.collection("books").document(bookId).delete()
-//                .addOnSuccessListener(aVoid -> {
-//                    Log.d("Firestore", "Book successfully deleted!");
-//                })
-//                .addOnFailureListener(e -> {
-//                    Log.w("Firestore", "Error deleting book", e);
-//                });
-//    }
+    public void insertPage(PageModel pageModel) {
+
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                appDatabase.pageDao().insertPage(pageModel);
+            }
+        });
+
+    }
+
+    public void updatePage(PageModel pageModel) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                appDatabase.pageDao().updatePage(pageModel);
+            }
+        });
+    }
+
+    public void deletePage(PageModel pageModel) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                appDatabase.pageDao().deletePage(pageModel);
+            }
+        });
+    }
+
+    public List<PageModel> getAllPagesFuture() throws ExecutionException, InterruptedException {
+
+        Callable<List<PageModel>> callable = new Callable<List<PageModel>>() {
+            @Override
+            public List<PageModel> call() throws Exception {
+                return appDatabase.pageDao().getAllPagesFuture();
+            }
+        };
+
+        Future<List<PageModel>> future = Executors.newSingleThreadExecutor().submit(callable);
+        return future.get();
+
+
+    }
+    public List<PageModel> getAllPagesFromBookIdFuture() throws ExecutionException, InterruptedException {
+
+        Callable<List<PageModel>> callable = new Callable<List<PageModel>>() {
+            @Override
+            public List<PageModel> call() throws Exception {
+                return appDatabase.pageDao().getAllPagesFuture();
+            }
+        };
+
+        Future<List<PageModel>> future = Executors.newSingleThreadExecutor().submit(callable);
+        return future.get();
+
+
+    }
 }

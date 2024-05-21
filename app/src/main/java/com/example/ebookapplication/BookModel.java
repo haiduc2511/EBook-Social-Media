@@ -15,6 +15,7 @@ public class BookModel implements Parcelable {
     public int bId;
 
     @ColumnInfo(name = "b_title")
+    public String bFirebaseId;
     public String bookTitle;
     public String authorName;
     public int numberOfPages;
@@ -25,6 +26,7 @@ public class BookModel implements Parcelable {
 
     protected BookModel(Parcel in) {
         bId = in.readInt();
+        bFirebaseId = in.readString();
         bookTitle = in.readString();
         authorName = in.readString();
         numberOfPages = in.readInt();
@@ -35,6 +37,7 @@ public class BookModel implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(bId);
+        dest.writeString(bFirebaseId);
         dest.writeString(bookTitle);
         dest.writeString(authorName);
         dest.writeInt(numberOfPages);
@@ -62,7 +65,8 @@ public class BookModel implements Parcelable {
     @NonNull
     @Override
     public String toString() {
-        String information = "Title" + bookTitle + "\n" +
+        String information = "FirebaseID" + bFirebaseId + "\n" +
+                "Title" + bookTitle + "\n" +
                 "AuthorName" + authorName + "\n" +
                 "numberOfPages" + numberOfPages + "\n" +
                 "bookCategory" + bookCategory + "\n" +

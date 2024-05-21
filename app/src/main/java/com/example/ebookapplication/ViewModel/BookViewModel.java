@@ -1,6 +1,9 @@
 package com.example.ebookapplication.ViewModel;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -11,6 +14,7 @@ import androidx.lifecycle.AndroidViewModel;
 import com.example.ebookapplication.Database.AppRepo;
 import com.example.ebookapplication.BookModel;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -52,8 +56,10 @@ public class BookViewModel extends AndroidViewModel {
         return appRepo.getAllBooksLive();
     }
 
-    public void addBookFirebase(BookModel bookModel, OnCompleteListener<DocumentReference> onCompleteListener) {
-        db.collection(COLLECTION_NAME).add(bookModel).addOnCompleteListener(onCompleteListener);
+    public void addBookFirebase(BookModel bookModel, OnCompleteListener<Void> onCompleteListener) {
+        String id = db.collection("books").document().getId(); // Generate a new ID
+        bookModel.bFirebaseId = id;
+        db.collection(COLLECTION_NAME).document(id).set(bookModel).addOnCompleteListener(onCompleteListener);
     }
 
     // Read all books

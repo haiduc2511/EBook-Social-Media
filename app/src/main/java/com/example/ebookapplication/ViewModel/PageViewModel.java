@@ -1,0 +1,48 @@
+package com.example.ebookapplication.ViewModel;
+
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+
+import com.example.ebookapplication.BookModel;
+import com.example.ebookapplication.Database.AppRepo;
+import com.example.ebookapplication.PageModel;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+public class PageViewModel extends AndroidViewModel {
+    private static final String COLLECTION_NAME = "pages";
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    private AppRepo appRepo;
+
+    public PageViewModel(@NonNull Application application) {
+        super(application);
+        appRepo = new AppRepo(application);
+    }
+
+    public void insertPage(PageModel pageModel) {
+        appRepo.insertPage(pageModel);
+    }
+
+    public void updatePage(PageModel pageModel) {
+        appRepo.updatePage(pageModel);
+    }
+
+    public void deletePage(PageModel pageModel) {
+        appRepo.deletePage(pageModel);
+    }
+
+    public List<PageModel> getAllPagesFuture() throws ExecutionException, InterruptedException {
+        return appRepo.getAllPagesFuture();
+    }
+    public List<PageModel> getAllPagesFromBookIdFuture() throws ExecutionException, InterruptedException {
+        return appRepo.getAllPagesFromBookIdFuture();
+    }
+    public BookModel getBook(int id) throws ExecutionException, InterruptedException {
+        return appRepo.getBook(id);
+    }
+}

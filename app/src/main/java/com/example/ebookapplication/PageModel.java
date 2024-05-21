@@ -3,6 +3,7 @@ package com.example.ebookapplication;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -10,23 +11,23 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "page")
 public class PageModel implements Parcelable {
 
-    @PrimaryKey(autoGenerate = true)
-    public int pId;
-
+    @PrimaryKey
+    @NonNull
+    public String pFirebaseId;
     public String bookId;
     public String content;
     public PageModel() {
     }
 
     protected PageModel(Parcel in) {
-        pId = in.readInt();
+        pFirebaseId = in.readString();
         bookId = in.readString();
         content = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(pId);
+        dest.writeString(pFirebaseId);
         dest.writeString(bookId);
         dest.writeString(content);
     }
@@ -47,4 +48,13 @@ public class PageModel implements Parcelable {
             return new PageModel[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "PageModel{" +
+                "pFirebaseId='" + pFirebaseId + '\'' +
+                ", bookId='" + bookId + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }

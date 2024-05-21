@@ -31,12 +31,12 @@ public interface PageDao {
     @Query("SELECT * FROM page")
     List<PageModel> getAllPagesFuture();
 
-    @Query("SELECT * FROM page WHERE bookId = :id")
-    List<PageModel> getAllPagesFromBookIdFuture(int id);
+    @Query("SELECT * FROM page WHERE bookId = :bookId")
+    List<PageModel> getAllPagesFromBookIdFuture(String bookId);
     @Query("SELECT * FROM page")
     List<PageModel> getAllPages();
 
-    @Query("SELECT * FROM page WHERE pId=:id")
-    PageModel getPage(int id);
+    @Query("SELECT * FROM page WHERE pFirebaseId=:pFirebaseId")
+    PageModel getPage(String pFirebaseId);
 
 }

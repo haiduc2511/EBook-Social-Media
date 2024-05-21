@@ -1,5 +1,6 @@
 package com.example.ebookapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -48,6 +49,11 @@ public class BookDetailActivity extends AppCompatActivity {
         binding.tvBookCategory.setText("" + bookModel.bookCategory);
         binding.tvBookRating.setText("chua biet de tam la 4.5 sao");
         binding.tvBookSummary.setText("" + bookModel.bookSummary);
+        binding.fabAddPage.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AddPageActivity.class);
+            intent.putExtra("bookModel", bookModel);
+            startActivity(intent);
+        });
 
     }
 }

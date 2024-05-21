@@ -59,6 +59,7 @@ public class BookViewModel extends AndroidViewModel {
     public void addBookFirebase(BookModel bookModel, OnCompleteListener<Void> onCompleteListener) {
         String id = db.collection("books").document().getId(); // Generate a new ID
         bookModel.bFirebaseId = id;
+        this.insertBook(bookModel);
         db.collection(COLLECTION_NAME).document(id).set(bookModel).addOnCompleteListener(onCompleteListener);
     }
 

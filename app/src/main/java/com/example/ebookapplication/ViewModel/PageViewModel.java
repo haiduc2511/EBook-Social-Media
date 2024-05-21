@@ -8,7 +8,9 @@ import androidx.lifecycle.AndroidViewModel;
 import com.example.ebookapplication.BookModel;
 import com.example.ebookapplication.Database.AppRepo;
 import com.example.ebookapplication.PageModel;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -42,7 +44,26 @@ public class PageViewModel extends AndroidViewModel {
     public List<PageModel> getAllPagesFromBookIdFuture() throws ExecutionException, InterruptedException {
         return appRepo.getAllPagesFromBookIdFuture();
     }
-    public BookModel getBook(int id) throws ExecutionException, InterruptedException {
-        return appRepo.getBook(id);
+
+    public void addPageFirebase(PageModel pageModel, OnCompleteListener<Void> onCompleteListener) {
+        String id = db.collection("pages").document().getId(); // Generate a new ID
+        pageModel.pFirebaseId = id;
+        db.collection(COLLECTION_NAME).document(id).set(pageModel).addOnCompleteListener(onCompleteListener);
     }
+
+    // Read all pages from book
+    public void getPagesByBookIdFirebase(String bId, OnCompleteListener<QuerySnapshot> onCompleteListener) {
+        db.collection(COLLECTION_NAME).whereEqualTo("bookId", bId).get().addOnCompleteListener(onCompleteListener);
+    }
+
+    // Update a book
+    public void updatePageFirebase(String id, PageModel pageModel, OnCompleteListener<Void> onCompleteListener) {
+        db.collection(COLLECTION_NAME).document(id).set(pageModel).addOnCompleteListener(onCompleteListener);
+    }
+
+    // Delete a book
+    public void deletePageFirebase(String id, OnCompleteListener<Void> onCompleteListener) {
+        db.collection(COLLECTION_NAME).document(id).delete().addOnCompleteListener(onCompleteListener);
+    }
+
 }

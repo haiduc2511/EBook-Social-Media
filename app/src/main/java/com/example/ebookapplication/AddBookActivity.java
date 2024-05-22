@@ -50,7 +50,7 @@ public class AddBookActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        Log.d(TAG, "Book added with ID: " + task.getResult().toString());
+                        Log.d(TAG, "Book added with ID");
                     } else {
                         Log.w(TAG, "Error adding book", task.getException());
                     }

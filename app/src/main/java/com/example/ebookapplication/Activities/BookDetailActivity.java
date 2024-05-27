@@ -49,13 +49,13 @@ public class BookDetailActivity extends AppCompatActivity {
         binding.tvBookSummary.setText("" + bookModel.bookSummary);
         binding.fabAddPage.setOnClickListener(v -> {
             Intent intent = new Intent(this, AddPageActivity.class);
-            intent.putExtra("bookModel", bookModel);
+            intent.putExtra("book", bookModel);
             startActivity(intent);
         });
 
         binding.ivBookCover.setOnClickListener(v -> {
             Intent intent = new Intent(this, ReadingActivity.class);
-            intent.putExtra("bookModel", bookModel);
+            intent.putExtra("book", bookModel);
             startActivity(intent);
         });
         binding.floatingActionButton3.setOnClickListener(v -> {

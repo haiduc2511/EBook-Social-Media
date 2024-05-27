@@ -60,7 +60,7 @@ public class ReadingActivity extends AppCompatActivity {
     private void initViewPager() {
         pageAdapter = new PageAdapter(this);
         binding.vpPages.setAdapter(pageAdapter);
-        BookModel bookModel = getIntent().getParcelableExtra("bookModel");
+        BookModel bookModel = getIntent().getParcelableExtra("book");
         String bookId = bookModel.bFirebaseId;
         pageViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(PageViewModel.class);
         pageViewModel.getPagesByBookIdFirebase(bookId, new OnCompleteListener<QuerySnapshot>() {

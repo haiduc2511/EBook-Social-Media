@@ -10,6 +10,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ebookapplication.Activities.BookDetailActivity;
+import com.example.ebookapplication.Activities.BookListActivity;
+import com.example.ebookapplication.Activities.BookRecommendListActivity;
+import com.example.ebookapplication.Activities.ReadingActivity;
 import com.example.ebookapplication.BookModel;
 import com.example.ebookapplication.R;
 import com.example.ebookapplication.databinding.ItemBookBinding;
@@ -45,9 +48,15 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             BookModel bookModel = bookModelList.get(position);
             holder.binding.setBookModel(bookModel);
             holder.binding.cvMain.setOnClickListener(v -> {
-                Intent intent = new Intent(context, BookDetailActivity.class);
-                intent.putExtra("book", bookModel);
-                context.startActivity(intent);
+                if (context instanceof BookListActivity) {
+                    Intent intent = new Intent(context, ReadingActivity.class);
+                    intent.putExtra("book", bookModel);
+                    context.startActivity(intent);
+                } else if (context instanceof BookRecommendListActivity) {
+                    Intent intent = new Intent(context, BookDetailActivity.class);
+                    intent.putExtra("book", bookModel);
+                    context.startActivity(intent);
+                }
             });
         }
     }

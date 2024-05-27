@@ -40,7 +40,7 @@ public class AddPageActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        BookModel bookModel = getIntent().getParcelableExtra("bookModel");
+        BookModel bookModel = getIntent().getParcelableExtra("book");
         pageViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(PageViewModel.class);
         bookViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookViewModel.class);
         binding.btAddPage.setOnClickListener(v -> {

@@ -12,7 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.ebookapplication.R;
-import com.example.ebookapplication.StartActivity;
+import com.example.ebookapplication.Activities.StartActivity;
 import com.example.ebookapplication.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

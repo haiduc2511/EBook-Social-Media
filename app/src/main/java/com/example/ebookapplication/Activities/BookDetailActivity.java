@@ -1,4 +1,4 @@
-package com.example.ebookapplication;
+package com.example.ebookapplication.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +10,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.ebookapplication.BookModel;
+import com.example.ebookapplication.R;
 import com.example.ebookapplication.ViewModel.BookViewModel;
 import com.example.ebookapplication.databinding.ActivityBookDetailBinding;
-
-import java.util.concurrent.ExecutionException;
 
 public class BookDetailActivity extends AppCompatActivity {
     BookViewModel bookViewModel;
@@ -31,8 +31,6 @@ public class BookDetailActivity extends AppCompatActivity {
             return insets;
         });
         getData();
-
-
         initUI();
 
     }
@@ -53,6 +51,15 @@ public class BookDetailActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AddPageActivity.class);
             intent.putExtra("bookModel", bookModel);
             startActivity(intent);
+        });
+
+        binding.ivBookCover.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ReadingActivity.class);
+            intent.putExtra("bookModel", bookModel);
+            startActivity(intent);
+        });
+        binding.floatingActionButton3.setOnClickListener(v -> {
+            bookViewModel.insertBook(bookModel);
         });
 
     }

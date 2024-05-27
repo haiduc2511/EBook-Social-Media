@@ -1,4 +1,4 @@
-package com.example.ebookapplication;
+package com.example.ebookapplication.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.ebookapplication.R;
 import com.example.ebookapplication.databinding.ActivityStartBinding;
 
 public class StartActivity extends AppCompatActivity {

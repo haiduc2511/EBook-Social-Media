@@ -1,4 +1,4 @@
-package com.example.ebookapplication;
+package com.example.ebookapplication.Activities;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +9,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.ebookapplication.R;
+import com.example.ebookapplication.UserModel;
 import com.example.ebookapplication.databinding.ActivityUserBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

@@ -1,4 +1,4 @@
-package com.example.ebookapplication;
+package com.example.ebookapplication.Activities;
 
 import static android.content.ContentValues.TAG;
 
@@ -16,6 +16,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.ebookapplication.BookModel;
+import com.example.ebookapplication.PageModel;
+import com.example.ebookapplication.R;
 import com.example.ebookapplication.ViewModel.BookViewModel;
 import com.example.ebookapplication.ViewModel.PageViewModel;
 import com.example.ebookapplication.databinding.ActivityAddPageBinding;

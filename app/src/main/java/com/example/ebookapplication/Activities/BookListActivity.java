@@ -1,4 +1,4 @@
-package com.example.ebookapplication;
+package com.example.ebookapplication.Activities;
 
 import android.os.Bundle;
 
@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.ebookapplication.Adapter.BookAdapter;
+import com.example.ebookapplication.BookModel;
+import com.example.ebookapplication.R;
 import com.example.ebookapplication.ViewModel.BookViewModel;
 import com.example.ebookapplication.databinding.ActivityBookListBinding;
 

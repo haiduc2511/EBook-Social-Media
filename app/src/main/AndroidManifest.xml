@@ -13,25 +13,28 @@
         android:theme="@style/Theme.EBookApplication"
         tools:targetApi="31">
         <activity
-            android:name=".AddPageActivity"
+            android:name=".Activities.ReadingActivity"
             android:exported="false" />
         <activity
-            android:name=".BookRecommendListActivity"
+            android:name=".Activities.AddPageActivity"
             android:exported="false" />
         <activity
-            android:name=".AddBookActivity"
+            android:name=".Activities.BookRecommendListActivity"
             android:exported="false" />
         <activity
-            android:name=".UserActivity"
+            android:name=".Activities.AddBookActivity"
             android:exported="false" />
         <activity
-            android:name=".BookDetailActivity"
+            android:name=".Activities.UserActivity"
             android:exported="false" />
         <activity
-            android:name=".BookListActivity"
+            android:name=".Activities.BookDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".StartActivity"
+            android:name=".Activities.BookListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.StartActivity"
             android:exported="false" />
         <activity
             android:name=".AuthenticationActivities.RegisterActivity"

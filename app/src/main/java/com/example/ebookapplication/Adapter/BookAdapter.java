@@ -1,10 +1,7 @@
 package com.example.ebookapplication.Adapter;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -12,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ebookapplication.BookDetailActivity;
+import com.example.ebookapplication.Activities.BookDetailActivity;
 import com.example.ebookapplication.BookModel;
 import com.example.ebookapplication.R;
 import com.example.ebookapplication.databinding.ItemBookBinding;

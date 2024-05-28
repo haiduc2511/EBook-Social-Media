@@ -10,7 +10,6 @@ import androidx.room.PrimaryKey;
 
 public class BookRatingModel implements Parcelable {
 
-    @PrimaryKey
     @NonNull
     public String rFirebaseId;
     public String bookId;
@@ -42,15 +41,15 @@ public class BookRatingModel implements Parcelable {
         return 0;
     }
 
-    public static final Creator<PageModel> CREATOR = new Creator<PageModel>() {
+    public static final Creator<BookRatingModel> CREATOR = new Creator<BookRatingModel>() {
         @Override
-        public PageModel createFromParcel(Parcel in) {
-            return new PageModel(in);
+        public BookRatingModel createFromParcel(Parcel in) {
+            return new BookRatingModel(in);
         }
 
         @Override
-        public PageModel[] newArray(int size) {
-            return new PageModel[size];
+        public BookRatingModel[] newArray(int size) {
+            return new BookRatingModel[size];
         }
     };
 

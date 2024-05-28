@@ -58,9 +58,13 @@ public class BookDetailActivity extends AppCompatActivity {
             intent.putExtra("book", bookModel);
             startActivity(intent);
         });
-        binding.floatingActionButton3.setOnClickListener(v -> {
+        binding.fabDownloadBook.setOnClickListener(v -> {
             bookViewModel.insertBook(bookModel);
         });
+        binding.fabBookRating.setOnClickListener(v -> {
+
+        });
+
 
     }
 }

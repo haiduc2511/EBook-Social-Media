@@ -1,5 +1,6 @@
 package com.example.ebookapplication.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -9,6 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.ebookapplication.AuthenticationActivities.LoginActivity;
 import com.example.ebookapplication.R;
 import com.example.ebookapplication.UserModel;
 import com.example.ebookapplication.databinding.ActivityUserBinding;
@@ -34,7 +36,16 @@ public class UserActivity extends AppCompatActivity {
             return insets;
         });
         getCurrentUser(db, mAuth);
+        initUi();
 
+    }
+
+    public void initUi() {
+        binding.fabLogout.setOnClickListener(v -> {
+            mAuth.signOut();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        });
     }
     public void getCurrentUser(FirebaseFirestore db, FirebaseAuth mAuth) {
         FirebaseUser firebaseUser = mAuth.getCurrentUser();

@@ -52,9 +52,13 @@ public class LoginActivity extends AppCompatActivity {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, StartActivity.class);
-                startActivity(intent);
+                if (task.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, StartActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(LoginActivity.this, "Wrong password or email", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

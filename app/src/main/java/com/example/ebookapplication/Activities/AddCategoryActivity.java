@@ -49,7 +49,7 @@ public class AddCategoryActivity extends AppCompatActivity {
             categoryViewModel.addCategoryFirebase(categoryModel, new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    Toast.makeText(AddCategoryActivity.this, "Add Category " + categoryModel.categoryName + " successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddCategoryActivity.this, "Add Category  " + categoryModel.categoryName + " successfully", Toast.LENGTH_SHORT).show();
                 }
             });
         });

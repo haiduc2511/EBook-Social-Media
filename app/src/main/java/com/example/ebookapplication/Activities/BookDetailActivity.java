@@ -62,7 +62,9 @@ public class BookDetailActivity extends AppCompatActivity {
             bookViewModel.insertBook(bookModel);
         });
         binding.fabBookRating.setOnClickListener(v -> {
-
+            Intent intent = new Intent(this, BookRatingActivity.class);
+            intent.putExtra("book", bookModel);
+            startActivity(intent);
         });
 
 

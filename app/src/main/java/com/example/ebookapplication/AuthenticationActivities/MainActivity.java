@@ -9,8 +9,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.ebookapplication.Activities.StartActivity;
 import com.example.ebookapplication.R;
 import com.example.ebookapplication.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Intent intent = new Intent(MainActivity.this, StartActivity.class);
+            startActivity(intent);
+        }
         binding.btLogin.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);

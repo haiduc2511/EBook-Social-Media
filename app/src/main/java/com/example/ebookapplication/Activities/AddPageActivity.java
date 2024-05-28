@@ -41,6 +41,7 @@ public class AddPageActivity extends AppCompatActivity {
             return insets;
         });
         BookModel bookModel = getIntent().getParcelableExtra("book");
+        binding.tvBookFirebaseId.setText(bookModel.bFirebaseId);
         pageViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(PageViewModel.class);
         bookViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookViewModel.class);
         binding.btAddPage.setOnClickListener(v -> {

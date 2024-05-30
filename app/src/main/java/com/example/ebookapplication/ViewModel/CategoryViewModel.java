@@ -29,19 +29,19 @@ public class CategoryViewModel extends AndroidViewModel {
     }
 
 
-    // Read all pages
+    // Read all categories
     public void getCategoriesFirebase(OnCompleteListener<QuerySnapshot> onCompleteListener) {
         db.collection(COLLECTION_NAME).get().addOnCompleteListener(onCompleteListener);
     }
 
 
-    // Update a book
-    public void updateCategoriesFirebase(String id, PageModel pageModel, OnCompleteListener<Void> onCompleteListener) {
-        db.collection(COLLECTION_NAME).document(id).set(pageModel).addOnCompleteListener(onCompleteListener);
+    // Update a category
+    public void updateCategoryFirebase(String id, CategoryModel categoryModel, OnCompleteListener<Void> onCompleteListener) {
+        db.collection(COLLECTION_NAME).document(id).set(categoryModel).addOnCompleteListener(onCompleteListener);
     }
 
-    // Delete a book
-    public void deleteCategoriesFirebase(String id, OnCompleteListener<Void> onCompleteListener) {
+    // Delete a category
+    public void deleteCategoryFirebase(String id, OnCompleteListener<Void> onCompleteListener) {
         db.collection(COLLECTION_NAME).document(id).delete().addOnCompleteListener(onCompleteListener);
     }
 

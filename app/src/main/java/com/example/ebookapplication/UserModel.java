@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "user")
 public class UserModel implements Parcelable {
-
     @PrimaryKey(autoGenerate = true)
     public int uId;
 
@@ -20,6 +19,7 @@ public class UserModel implements Parcelable {
     public int userFollowers;
     public UserModel() {
     }
+
 
     protected UserModel(Parcel in) {
         uId = in.readInt();
@@ -44,7 +44,6 @@ public class UserModel implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
     public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {
         @Override
         public UserModel createFromParcel(Parcel in) {
@@ -56,4 +55,16 @@ public class UserModel implements Parcelable {
             return new UserModel[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "UserCategoryModel{" +
+                "uId='" + uId + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userAge='" + userAge + '\'' +
+                ", userGender='" + userGender + '\'' +
+                ", userFollowers='" + userFollowers + '\'' +
+                '}';
+    }
 }

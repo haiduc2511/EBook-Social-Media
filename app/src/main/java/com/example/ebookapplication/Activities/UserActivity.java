@@ -55,14 +55,7 @@ public class UserActivity extends AppCompatActivity {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
                             UserModel user = document.toObject(UserModel.class);
-                            binding.textView.setText(user.uId + "\n" +
-                                    user.userName + "\n" +
-                                    user.userAge + "\n" +
-                                    user.userEmail + "\n" +
-                                    user.userGender + "\n" +
-                                    user.userFollowers + "\n" +
-                                    firebaseUser.getUid()
-                            );
+                            binding.textView.setText(user.toString());
                         } else {
                             Log.d("Firestore", "No such document");
                         }

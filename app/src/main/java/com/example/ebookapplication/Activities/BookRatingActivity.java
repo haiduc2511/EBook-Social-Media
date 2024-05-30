@@ -14,7 +14,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.ebookapplication.Adapter.BookAdapter;
+import com.example.ebookapplication.Adapter.BookRatingAdapter;
 import com.example.ebookapplication.BookModel;
 import com.example.ebookapplication.BookRatingModel;
 import com.example.ebookapplication.R;
@@ -22,14 +25,21 @@ import com.example.ebookapplication.ViewModel.BookRatingViewModel;
 import com.example.ebookapplication.ViewModel.BookViewModel;
 import com.example.ebookapplication.databinding.ActivityBookDetailBinding;
 import com.example.ebookapplication.databinding.ActivityBookRatingBinding;
+import com.example.ebookapplication.databinding.ActivityBookRecommendListBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.List;
 
 public class BookRatingActivity extends AppCompatActivity {
     BookRatingViewModel bookRatingViewModel;
     BookModel bookModel;
     ActivityBookRatingBinding binding;
+    BookRatingModel bookRatingModel;
+    BookRatingAdapter bookRatingAdapter;
+    List<BookRatingModel> bookRatingList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +53,7 @@ public class BookRatingActivity extends AppCompatActivity {
         });
         getData();
         initUI();
+        initRvBookRating();
     }
 
 
@@ -60,7 +71,7 @@ public class BookRatingActivity extends AppCompatActivity {
             }
         });
 
-        binding.btSendRatingBook.setOnClickListener(v -> {
+        binding.fabSendRatingBook.setOnClickListener(v -> {
             BookRatingModel bookRatingModel = new BookRatingModel();
             bookRatingModel.bookId = bookModel.bFirebaseId;
             bookRatingModel.userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -76,6 +87,32 @@ public class BookRatingActivity extends AppCompatActivity {
                     }
                 }
             });
+            this.initRvBookRating();
         });
+
+
+    }
+
+    public void initRvBookRating() {
+        binding.rvBookRatingsList.setLayoutManager(new LinearLayoutManager(this));
+        bookRatingAdapter = new BookRatingAdapter(this);
+        binding.rvBookRatingsList.setAdapter(bookRatingAdapter);
+
+        bookRatingViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookRatingViewModel.class);
+        bookRatingViewModel.getBookRatingsByBookIdFirebase(bookModel.bFirebaseId, new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    bookRatingList = task.getResult().toObjects(BookRatingModel.class);
+                    bookRatingAdapter.setBookRatingModelList(bookRatingList);
+                    for (BookRatingModel bookRating : bookRatingList) {
+                        Log.d(TAG, bookRating.toString());
+                    }
+                } else {
+                    Log.w(TAG, "Error getting book ratings by bookId", task.getException());
+                }
+            }
+        });
+
     }
 }

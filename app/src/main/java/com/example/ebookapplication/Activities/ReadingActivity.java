@@ -52,13 +52,11 @@ public class ReadingActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        binding.btLeftPage.setOnClickListener(v -> {
 
-        });
     }
 
     private void initViewPager() {
-        pageAdapter = new PageAdapter(this);
+        pageAdapter = new PageAdapter(this, binding.tvPageNumber);
         binding.vpPages.setAdapter(pageAdapter);
         BookModel bookModel = getIntent().getParcelableExtra("book");
         String bookId = bookModel.bFirebaseId;

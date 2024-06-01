@@ -81,7 +81,7 @@ public class BookViewModel extends AndroidViewModel {
     // Get books by author
     public void getBooksByIdFirebase(String bId, OnCompleteListener<QuerySnapshot> onCompleteListener) {
         db.collection(COLLECTION_NAME)
-                .whereEqualTo("bId", bId)
+                .whereEqualTo("bFirebaseId", bId)
                 .get()
                 .addOnCompleteListener(onCompleteListener);
     }

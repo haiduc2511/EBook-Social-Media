@@ -13,7 +13,6 @@ import com.example.ebookapplication.Activities.BookDetailActivity;
 import com.example.ebookapplication.Activities.BookListActivity;
 import com.example.ebookapplication.Activities.BookRecommendListActivity;
 import com.example.ebookapplication.Activities.ReadingActivity;
-import com.example.ebookapplication.Activities.StartActivity;
 import com.example.ebookapplication.BookModel;
 import com.example.ebookapplication.R;
 import com.example.ebookapplication.databinding.ItemBookBinding;
@@ -21,12 +20,12 @@ import com.example.ebookapplication.databinding.ItemRecommendedBookHorizontalBin
 
 import java.util.List;
 
-public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder>{
+public class BookAdapterHorizontal extends RecyclerView.Adapter<BookAdapterHorizontal.BookHorizontalViewHolder>{
 
     private Context context;
     private List<BookModel> bookModelList;
 
-    public BookAdapter(Context context) {
+    public BookAdapterHorizontal(Context context) {
         this.context = context;
 
     }
@@ -38,28 +37,22 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     @NonNull
     @Override
-    public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemBookBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                R.layout.item_book, parent, false);
-        return new BookViewHolder(binding);
+    public BookHorizontalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        ItemRecommendedBookHorizontalBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                R.layout.item_recommended_book_horizontal, parent, false);
+        return new BookHorizontalViewHolder(binding);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BookHorizontalViewHolder holder, int position) {
         if (!bookModelList.isEmpty()) {
             BookModel bookModel = bookModelList.get(position);
             holder.binding.setBookModel(bookModel);
             holder.binding.cvMain.setOnClickListener(v -> {
-                if (context instanceof BookListActivity) {
-                    Intent intent = new Intent(context, ReadingActivity.class);
-                    intent.putExtra("book", bookModel);
-                    context.startActivity(intent);
-                } else if (context instanceof BookRecommendListActivity) {
-                    Intent intent = new Intent(context, BookDetailActivity.class);
-                    intent.putExtra("book", bookModel);
-                    context.startActivity(intent);
-                }
+                Intent intent = new Intent(context, BookDetailActivity.class);
+                intent.putExtra("book", bookModel);
+                context.startActivity(intent);
             });
         }
     }
@@ -79,11 +72,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     }
 
 
-    public class BookViewHolder extends RecyclerView.ViewHolder {
-        ItemBookBinding binding;
+    public class BookHorizontalViewHolder extends RecyclerView.ViewHolder {
+        ItemRecommendedBookHorizontalBinding binding;
 
 
-        public BookViewHolder(@NonNull ItemBookBinding binding) {
+        public BookHorizontalViewHolder(@NonNull ItemRecommendedBookHorizontalBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

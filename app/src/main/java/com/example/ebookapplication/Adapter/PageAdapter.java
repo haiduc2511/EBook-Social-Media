@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -20,9 +21,11 @@ import java.util.List;
 public class PageAdapter extends RecyclerView.Adapter<PageAdapter.PageViewHolder> {
     List<PageModel> pageModelList;
     Context context;
+    TextView tvPageNumber;
 
-    public PageAdapter(Context context) {
+    public PageAdapter(Context context, TextView tvPageNumber) {
         this.context = context;
+        this.tvPageNumber = tvPageNumber;
     }
 
     public void setPages(List<PageModel> pageModelList) {
@@ -43,6 +46,7 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.PageViewHolder
         if (!pageModelList.isEmpty()) {
             PageModel pageModel = pageModelList.get(position);
             holder.binding.setPageModel(pageModel);
+            tvPageNumber.setText(pageModel.pFirebaseId);
         }
     }
 

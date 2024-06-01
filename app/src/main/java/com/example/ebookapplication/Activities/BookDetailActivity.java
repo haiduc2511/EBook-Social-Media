@@ -2,8 +2,10 @@ package com.example.ebookapplication.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -11,9 +13,13 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ebookapplication.BookModel;
+import com.example.ebookapplication.PageModel;
 import com.example.ebookapplication.R;
 import com.example.ebookapplication.ViewModel.BookViewModel;
 import com.example.ebookapplication.databinding.ActivityBookDetailBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class BookDetailActivity extends AppCompatActivity {
     BookViewModel bookViewModel;
@@ -40,13 +46,20 @@ public class BookDetailActivity extends AppCompatActivity {
         bookViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookViewModel.class);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bookViewModel.getBooksByIdFirebase(bookModel.bFirebaseId, new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                bookModel = task.getResult().toObjects(BookModel.class).get(0);
+            }
+        });
+        binding.setBookModel(bookModel);
+        Toast.makeText(this, bookModel.toString(), Toast.LENGTH_SHORT).show();
+    }
+
     private void initUI() {
-        binding.tvBookTitle.setText("" + bookModel.bookTitle);
-        binding.tvAuthorName.setText("" + bookModel.authorName);
-        binding.tvPageNumber.setText("" + bookModel.numberOfPages);
-        binding.tvBookCategory.setText("" + bookModel.bookCategory);
-        binding.tvBookRating.setText("chua biet de tam la 4.5 sao");
-        binding.tvBookSummary.setText("" + bookModel.bookSummary);
         binding.fabAddPage.setOnClickListener(v -> {
             Intent intent = new Intent(this, AddPageActivity.class);
             intent.putExtra("book", bookModel);
@@ -66,6 +79,8 @@ public class BookDetailActivity extends AppCompatActivity {
             intent.putExtra("book", bookModel);
             startActivity(intent);
         });
+
+
 
 
     }

@@ -1,7 +1,10 @@
 package com.example.ebookapplication.Activities;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -13,18 +16,26 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ebookapplication.BookModel;
+import com.example.ebookapplication.BookRatingModel;
+import com.example.ebookapplication.MathUtilsForDuc;
 import com.example.ebookapplication.PageModel;
 import com.example.ebookapplication.R;
+import com.example.ebookapplication.ViewModel.BookRatingViewModel;
 import com.example.ebookapplication.ViewModel.BookViewModel;
 import com.example.ebookapplication.databinding.ActivityBookDetailBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.List;
+
 public class BookDetailActivity extends AppCompatActivity {
     BookViewModel bookViewModel;
     BookModel bookModel;
     ActivityBookDetailBinding binding;
+    BookRatingViewModel bookRatingViewModel;
+    List<BookRatingModel> bookRatingList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +55,20 @@ public class BookDetailActivity extends AppCompatActivity {
     private void getData() {
         bookModel = getIntent().getParcelableExtra("book");
         bookViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookViewModel.class);
+        bookRatingViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookRatingViewModel.class);
+        bookRatingViewModel.getBookRatingsByBookIdFirebase(bookModel.bFirebaseId, new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    bookRatingList = task.getResult().toObjects(BookRatingModel.class);
+                    double ratingNumber = MathUtilsForDuc.getRatingAverage(bookRatingList);
+                    binding.tvBookRating.setText("Rating\n\n" + ratingNumber + " ★");
+                } else {
+                    Log.w(TAG, "Error getting book ratings by bookId", task.getException());
+                }
+            }
+        });
+
     }
 
     @Override

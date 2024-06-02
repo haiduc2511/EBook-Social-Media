@@ -16,6 +16,7 @@ import com.example.ebookapplication.Activities.ReadingActivity;
 import com.example.ebookapplication.Activities.StartActivity;
 import com.example.ebookapplication.BookModel;
 import com.example.ebookapplication.R;
+import com.example.ebookapplication.SharedPrefManager;
 import com.example.ebookapplication.databinding.ItemBookBinding;
 import com.example.ebookapplication.databinding.ItemRecommendedBookHorizontalBinding;
 
@@ -54,6 +55,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                 if (context instanceof BookListActivity) {
                     Intent intent = new Intent(context, ReadingActivity.class);
                     intent.putExtra("book", bookModel);
+                    SharedPrefManager sharedPrefManager = new SharedPrefManager(context);
+                    sharedPrefManager.saveData("current_book", String.valueOf(bookModel.bId));
                     context.startActivity(intent);
                 } else if (context instanceof BookRecommendListActivity) {
                     Intent intent = new Intent(context, BookDetailActivity.class);

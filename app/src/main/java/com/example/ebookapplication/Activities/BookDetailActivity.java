@@ -29,6 +29,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class BookDetailActivity extends AppCompatActivity {
@@ -64,7 +65,8 @@ public class BookDetailActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     bookRatingList = task.getResult().toObjects(BookRatingModel.class);
                     double ratingNumber = MathUtilsForDuc.getRatingAverage(bookRatingList);
-                    binding.tvBookRating.setText("Rating\n\n" + ratingNumber + " ★");
+                    DecimalFormat df = new DecimalFormat("#.##");
+                    binding.tvBookRating.setText("Rating\n\n" + df.format(ratingNumber) + " ★");
                 } else {
                     Log.w(TAG, "Error getting book ratings by bookId", task.getException());
                 }

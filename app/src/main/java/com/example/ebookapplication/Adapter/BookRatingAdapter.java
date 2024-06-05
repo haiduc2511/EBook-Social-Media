@@ -1,6 +1,7 @@
 package com.example.ebookapplication.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -8,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ebookapplication.Activities.OtherUserActivity;
 import com.example.ebookapplication.BookRatingModel;
 import com.example.ebookapplication.PageModel;
 import com.example.ebookapplication.R;
@@ -42,6 +44,11 @@ public class BookRatingAdapter extends RecyclerView.Adapter<BookRatingAdapter.Bo
         if (!bookRatingModelList.isEmpty()) {
             BookRatingModel bookRatingModel = bookRatingModelList.get(position);
             holder.binding.setBookRatingModel(bookRatingModel);
+            holder.binding.ivUserAvatar.setOnClickListener(v -> {
+                Intent intent = new Intent(context, OtherUserActivity.class);
+                intent.putExtra("user", bookRatingModel.userId);
+                context.startActivity(intent);
+            });
         }
     }
 

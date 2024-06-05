@@ -53,6 +53,12 @@ public class StartActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initCurrentBook();
+    }
+
     private void initCurrentBook() {
         SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
         String bookId = sharedPrefManager.getData("current_book");

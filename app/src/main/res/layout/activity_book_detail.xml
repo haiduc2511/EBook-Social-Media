@@ -40,7 +40,8 @@
             android:id="@+id/tv_author_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:text='@{"Authors name: " + bookModel.authorName}'
             app:layout_constraintBottom_toTopOf="@+id/cl_book_detail"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
-            android:text="tóm tắt"
+            android:text='@{"Summary\n" + bookModel.bookSummary}'
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline9" />
 

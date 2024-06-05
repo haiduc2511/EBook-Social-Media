@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -20,6 +21,7 @@ import com.example.ebookapplication.BookRatingModel;
 import com.example.ebookapplication.MathUtilsForDuc;
 import com.example.ebookapplication.PageModel;
 import com.example.ebookapplication.R;
+import com.example.ebookapplication.SharedPrefManager;
 import com.example.ebookapplication.ViewModel.BookRatingViewModel;
 import com.example.ebookapplication.ViewModel.BookViewModel;
 import com.example.ebookapplication.databinding.ActivityBookDetailBinding;
@@ -74,6 +76,8 @@ public class BookDetailActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        getData();
+        initUI();
         bookViewModel.getBooksByIdFirebase(bookModel.bFirebaseId, new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -85,6 +89,14 @@ public class BookDetailActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
+        String initStatus = sharedPrefManager.getData("admin_status");
+        if (initStatus.equals("") || initStatus.equals("user")) {
+            binding.fabAddPage.setVisibility(View.INVISIBLE);
+        } else if (initStatus.equals("admin")) {
+            binding.fabAddPage.setVisibility(View.VISIBLE);
+        }
+
         binding.fabAddPage.setOnClickListener(v -> {
             Intent intent = new Intent(this, AddPageActivity.class);
             intent.putExtra("book", bookModel);

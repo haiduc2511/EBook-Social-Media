@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 public class SharedPrefManager {
 
-    private static final String PREF_NAME = "current_book";
+    private static final String PREF_NAME = "Preferences";
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 

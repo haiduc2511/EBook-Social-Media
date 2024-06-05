@@ -13,12 +13,10 @@ import com.example.ebookapplication.Activities.BookDetailActivity;
 import com.example.ebookapplication.Activities.BookListActivity;
 import com.example.ebookapplication.Activities.BookRecommendListActivity;
 import com.example.ebookapplication.Activities.ReadingActivity;
-import com.example.ebookapplication.Activities.StartActivity;
 import com.example.ebookapplication.BookModel;
 import com.example.ebookapplication.R;
-import com.example.ebookapplication.SharedPrefManager;
+import com.example.ebookapplication.Utils.SharedPrefManager;
 import com.example.ebookapplication.databinding.ItemBookBinding;
-import com.example.ebookapplication.databinding.ItemRecommendedBookHorizontalBinding;
 
 import java.util.List;
 

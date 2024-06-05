@@ -6,10 +6,8 @@ import android.os.Parcelable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "user")
 public class UserModel implements Parcelable {
-    @PrimaryKey(autoGenerate = true)
-    public int uId;
+    public String uId;
 
     public String userName;
     public String userEmail;
@@ -22,7 +20,7 @@ public class UserModel implements Parcelable {
 
 
     protected UserModel(Parcel in) {
-        uId = in.readInt();
+        uId = in.readString();
         userName = in.readString();
         userEmail = in.readString();
         userAge = in.readInt();
@@ -32,7 +30,7 @@ public class UserModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(uId);
+        dest.writeString(uId);
         dest.writeString(userName);
         dest.writeString(userEmail);
         dest.writeInt(userAge);

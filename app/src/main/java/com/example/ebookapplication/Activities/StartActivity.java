@@ -16,11 +16,10 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.ebookapplication.Adapter.BookAdapter;
 import com.example.ebookapplication.Adapter.BookAdapterHorizontal;
 import com.example.ebookapplication.BookModel;
 import com.example.ebookapplication.R;
-import com.example.ebookapplication.SharedPrefManager;
+import com.example.ebookapplication.Utils.SharedPrefManager;
 import com.example.ebookapplication.ViewModel.BookViewModel;
 import com.example.ebookapplication.databinding.ActivityStartBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -86,6 +85,9 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        binding.svSearch.setOnSearchClickListener(v -> {
+            Toast.makeText(this, "Chức năng này chưa được mở khoá, xin vui lòng đợi đồ án 2 :>", Toast.LENGTH_SHORT).show();
+        });
         binding.tvSeeMoreDownloaded.setOnClickListener(v -> {
             Toast.makeText(this, "vô BookList Activity", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(StartActivity.this, BookListActivity.class);

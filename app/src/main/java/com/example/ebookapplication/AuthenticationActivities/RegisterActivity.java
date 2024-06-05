@@ -62,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (firebaseUser != null) {
             String uid = firebaseUser.getUid();
             UserModel user = new UserModel();
+            user.uId = uid;
             user.userName = binding.etUsername.getText().toString();
             user.userEmail = binding.etEmail.getText().toString();
             user.userFollowers = 0;

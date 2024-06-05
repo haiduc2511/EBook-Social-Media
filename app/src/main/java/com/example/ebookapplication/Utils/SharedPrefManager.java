@@ -1,4 +1,4 @@
-package com.example.ebookapplication;
+package com.example.ebookapplication.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -5,9 +5,8 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.example.ebookapplication.BookModel;
 import com.example.ebookapplication.Database.AppRepo;
-import com.example.ebookapplication.NumberUtilsForDuc;
+import com.example.ebookapplication.Utils.NumberUtilsForDuc;
 import com.example.ebookapplication.PageModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.FirebaseFirestore;

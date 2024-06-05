@@ -4,6 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
+            name="categoryModel"
+            type="com.example.ebookapplication.CategoryModel" />
+        <variable
             name="bookModel"
             type="com.example.ebookapplication.BookModel" />
     </data>
@@ -128,7 +131,7 @@
                         android:id="@+id/tv_book_category"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text='@{"Category" + "\n\n" + bookModel.bookCategory}'
+                        android:text='@{"Category" + "\n\n" + categoryModel.categoryName}'
                         android:gravity="center"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/tv_book_rating"

@@ -18,15 +18,19 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ebookapplication.BookModel;
 import com.example.ebookapplication.BookRatingModel;
-import com.example.ebookapplication.MathUtilsForDuc;
-import com.example.ebookapplication.PageModel;
+import com.example.ebookapplication.CategoryModel;
+import com.example.ebookapplication.UserCategoryModel;
+import com.example.ebookapplication.Utils.MathUtilsForDuc;
 import com.example.ebookapplication.R;
-import com.example.ebookapplication.SharedPrefManager;
+import com.example.ebookapplication.Utils.SharedPrefManager;
 import com.example.ebookapplication.ViewModel.BookRatingViewModel;
 import com.example.ebookapplication.ViewModel.BookViewModel;
+import com.example.ebookapplication.ViewModel.CategoryViewModel;
+import com.example.ebookapplication.ViewModel.UserCategoryViewModel;
 import com.example.ebookapplication.databinding.ActivityBookDetailBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DecimalFormat;
@@ -37,7 +41,10 @@ public class BookDetailActivity extends AppCompatActivity {
     BookModel bookModel;
     ActivityBookDetailBinding binding;
     BookRatingViewModel bookRatingViewModel;
+    CategoryViewModel categoryViewModel;
+    UserCategoryViewModel userCategoryViewModel;
     List<BookRatingModel> bookRatingList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +66,16 @@ public class BookDetailActivity extends AppCompatActivity {
         bookModel = getIntent().getParcelableExtra("book");
         bookViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookViewModel.class);
         bookRatingViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookRatingViewModel.class);
+        categoryViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(CategoryViewModel.class);
+        userCategoryViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(UserCategoryViewModel.class);
+        categoryViewModel.getCategoryByIdFirebase(bookModel.bookCategory, new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    binding.setCategoryModel(task.getResult().toObjects(CategoryModel.class).get(0));
+                }
+            }
+        });
         bookRatingViewModel.getBookRatingsByBookIdFirebase(bookModel.bFirebaseId, new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -107,6 +124,36 @@ public class BookDetailActivity extends AppCompatActivity {
         });
 
         binding.ivBookCover.setOnClickListener(v -> {
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            String categoryId = bookModel.bookCategory;
+            userCategoryViewModel.getUserCategoryByIdFirebase(userId, categoryId, new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        if (task.getResult().toObjects(UserCategoryModel.class).size() != 0) {
+                            UserCategoryModel userCategoryModel = task.getResult().toObjects(UserCategoryModel.class).get(0);
+                            userCategoryModel.userCategoryPoints += 5;
+                            userCategoryViewModel.updateUserCategoryFirebase(userCategoryModel.ucFirebaseId, userCategoryModel, new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(BookDetailActivity.this, "update userCategory successfully", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        } else {
+                            UserCategoryModel userCategoryModel = new UserCategoryModel();
+                            userCategoryModel.categoryId = categoryId;
+                            userCategoryModel.userId = userId;
+                            userCategoryViewModel.addUserCategoryFirebase(userCategoryModel, new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(BookDetailActivity.this, "Added new userCategory successfully", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                        
+                    }
+                }
+            });
             Intent intent = new Intent(this, ReadingActivity.class);
             intent.putExtra("book", bookModel);
             startActivity(intent);

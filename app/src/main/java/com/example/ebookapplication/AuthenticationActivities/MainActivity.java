@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             Intent intent = new Intent(MainActivity.this, StartActivity.class);
             startActivity(intent);
+            finish();
         }
         binding.btLogin.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);

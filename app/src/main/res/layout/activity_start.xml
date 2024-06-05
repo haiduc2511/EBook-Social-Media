@@ -182,6 +182,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
     <SearchView
+        android:id="@+id/sv_search"
         android:layout_width="350dp"
         android:layout_height="42dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"

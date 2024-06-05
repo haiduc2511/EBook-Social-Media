@@ -1,4 +1,6 @@
-package com.example.ebookapplication;
+package com.example.ebookapplication.Utils;
+
+import com.example.ebookapplication.BookRatingModel;
 
 import java.util.List;
 

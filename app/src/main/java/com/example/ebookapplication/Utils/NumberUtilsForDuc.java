@@ -1,4 +1,4 @@
-package com.example.ebookapplication;
+package com.example.ebookapplication.Utils;
 
 public class NumberUtilsForDuc {
     public static String toStringFourDigits(int numberOfPages) {

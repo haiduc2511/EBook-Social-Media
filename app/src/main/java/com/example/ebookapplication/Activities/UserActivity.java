@@ -12,9 +12,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.ebookapplication.AuthenticationActivities.LoginActivity;
+import com.example.ebookapplication.AuthenticationActivities.MainActivity;
 import com.example.ebookapplication.R;
-import com.example.ebookapplication.SharedPrefManager;
+import com.example.ebookapplication.Utils.SharedPrefManager;
 import com.example.ebookapplication.UserModel;
 import com.example.ebookapplication.databinding.ActivityUserBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -58,8 +58,10 @@ public class UserActivity extends AppCompatActivity {
 
         binding.fabLogout.setOnClickListener(v -> {
             mAuth.signOut();
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
+            finish();
         });
         binding.button.setOnClickListener(v -> {
             String status = sharedPrefManager.getData("admin_status");

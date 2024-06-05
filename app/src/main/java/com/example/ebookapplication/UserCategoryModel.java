@@ -14,7 +14,6 @@ public class UserCategoryModel implements Parcelable {
     public String categoryId;
     public int userCategoryPoints;
 
-    public String categoryName;
     public UserCategoryModel() {
     }
 

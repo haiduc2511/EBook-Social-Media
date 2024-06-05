@@ -84,10 +84,11 @@ public class BookDetailActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 bookModel = task.getResult().toObjects(BookModel.class).get(0);
+                binding.setBookModel(bookModel);
+                Toast.makeText(BookDetailActivity.this, "" + bookModel.numberOfPages, Toast.LENGTH_SHORT).show();
             }
         });
-        binding.setBookModel(bookModel);
-        Toast.makeText(this, bookModel.toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, bookModel.toString(), Toast.LENGTH_SHORT).show();
     }
 
     private void initUI() {

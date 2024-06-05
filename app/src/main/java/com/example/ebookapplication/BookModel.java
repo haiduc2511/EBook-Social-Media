@@ -19,7 +19,7 @@ public class BookModel implements Parcelable {
     public String bookTitle;
     public String authorName;
     public int numberOfPages;
-    public String bookCategory;
+    public String bookCategory; // This is an Id, pls forgive me
     public String bookSummary;
     public BookModel() {
     }

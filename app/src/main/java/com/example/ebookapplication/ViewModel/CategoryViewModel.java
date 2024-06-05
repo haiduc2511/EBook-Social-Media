@@ -22,6 +22,12 @@ public class CategoryViewModel extends AndroidViewModel {
     }
 
 
+    public void getCategoryByIdFirebase(String cFirebaseId, OnCompleteListener<QuerySnapshot> onCompleteListener) {
+        db.collection(COLLECTION_NAME)
+                .whereEqualTo("cFirebaseId", cFirebaseId)
+                .get()
+                .addOnCompleteListener(onCompleteListener);
+    }
     public void addCategoryFirebase(CategoryModel categoryModel, OnCompleteListener<Void> onCompleteListener) {
         String id = db.collection(COLLECTION_NAME).document().getId(); // Generate a new ID
         categoryModel.cFirebaseId = id;

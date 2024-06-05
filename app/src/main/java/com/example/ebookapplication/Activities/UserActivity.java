@@ -73,6 +73,10 @@ public class UserActivity extends AppCompatActivity {
                 binding.btAddBook.setVisibility(View.INVISIBLE);
             }
         });
+        binding.btAddCategory.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AddCategoryActivity.class);
+            startActivity(intent);
+        });
     }
     public void getCurrentUser(FirebaseFirestore db, FirebaseAuth mAuth) {
         FirebaseUser firebaseUser = mAuth.getCurrentUser();

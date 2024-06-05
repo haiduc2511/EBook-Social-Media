@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 
 import com.example.ebookapplication.BookModel;
 import com.example.ebookapplication.Database.AppRepo;
+import com.example.ebookapplication.NumberUtilsForDuc;
 import com.example.ebookapplication.PageModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -45,8 +46,8 @@ public class PageViewModel extends AndroidViewModel {
         return appRepo.getAllPagesFromBookIdFuture();
     }
 
-    public void addPageFirebase(PageModel pageModel, OnCompleteListener<Void> onCompleteListener) {
-        String id = db.collection("pages").document().getId(); // Generate a new ID
+    public void addPageFirebase(int numberOfPages, PageModel pageModel, OnCompleteListener<Void> onCompleteListener) {
+        String id = NumberUtilsForDuc.toStringFourDigits(numberOfPages) + db.collection("pages").document().getId(); // Generate a new ID
         pageModel.pFirebaseId = id;
         db.collection(COLLECTION_NAME).document(id).set(pageModel).addOnCompleteListener(onCompleteListener);
     }

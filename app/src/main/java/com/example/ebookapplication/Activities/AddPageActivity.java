@@ -44,13 +44,14 @@ public class AddPageActivity extends AppCompatActivity {
         binding.tvBookFirebaseId.setText(bookModel.bFirebaseId);
         pageViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(PageViewModel.class);
         bookViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookViewModel.class);
+
         binding.btAddPage.setOnClickListener(v -> {
             PageModel pageModel = new PageModel();
             pageModel.bookId = bookModel.bFirebaseId;
             pageModel.content = binding.etPageContent.getText().toString();
             Toast.makeText(this, pageModel.toString(), Toast.LENGTH_SHORT).show();
 
-            pageViewModel.addPageFirebase(pageModel, new OnCompleteListener<Void>() {
+            pageViewModel.addPageFirebase(bookModel.numberOfPages, pageModel, new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {

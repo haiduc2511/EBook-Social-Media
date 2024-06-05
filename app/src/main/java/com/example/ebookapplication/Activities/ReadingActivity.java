@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.ebookapplication.Adapter.BookAdapter;
 import com.example.ebookapplication.Adapter.PageAdapter;
@@ -33,6 +35,7 @@ public class ReadingActivity extends AppCompatActivity {
     PageAdapter pageAdapter;
     PageViewModel pageViewModel;
     List<PageModel> pages;
+    int currentPage = 0;
 
 
     @Override
@@ -75,6 +78,36 @@ public class ReadingActivity extends AppCompatActivity {
                 }
             }
         });
+        binding.vpPages.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+            }
 
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                if (position > currentPage) {
+                    onSwipeRight();
+                } else if (position < currentPage) {
+                    onSwipeLeft();
+                }
+                currentPage = position;
+                binding.tvPageNumber.setText(pages.get(position).pFirebaseId);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+            }
+        });
+
+    }
+    private void onSwipeRight() {
+        Toast.makeText(this, "Swiped Right", Toast.LENGTH_SHORT).show();
+    }
+
+    private void onSwipeLeft() {
+        Toast.makeText(this, "Swiped Left", Toast.LENGTH_SHORT).show();
     }
 }

@@ -47,10 +47,14 @@ public class UserActivity extends AppCompatActivity {
         SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
         String initStatus = sharedPrefManager.getData("admin_status");
         if (initStatus.equals("") || initStatus.equals("user")) {
-            binding.button2.setVisibility(View.INVISIBLE);
+            binding.btAddBook.setVisibility(View.INVISIBLE);
         } else if (initStatus.equals("admin")) {
-            binding.button2.setVisibility(View.VISIBLE);
+            binding.btAddBook.setVisibility(View.VISIBLE);
         }
+        binding.btAddBook.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AddBookActivity.class);
+            startActivity(intent);
+        });
 
         binding.fabLogout.setOnClickListener(v -> {
             mAuth.signOut();
@@ -62,12 +66,12 @@ public class UserActivity extends AppCompatActivity {
             if (status.equals("") || status.equals("user")) {
                 sharedPrefManager.saveData("admin_status", "admin");
                 Toast.makeText(this, "Status changed from user to admin", Toast.LENGTH_SHORT).show();
+                binding.btAddBook.setVisibility(View.VISIBLE);
             } else if (status.equals("admin")) {
                 sharedPrefManager.saveData("admin_status", "user");
                 Toast.makeText(this, "Status changed from admin to user", Toast.LENGTH_SHORT).show();
+                binding.btAddBook.setVisibility(View.INVISIBLE);
             }
-
-
         });
     }
     public void getCurrentUser(FirebaseFirestore db, FirebaseAuth mAuth) {
@@ -78,7 +82,7 @@ public class UserActivity extends AppCompatActivity {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
                             UserModel user = document.toObject(UserModel.class);
-                            binding.textView.setText(user.toString());
+                            binding.setUserModel(user);
                         } else {
                             Log.d("Firestore", "No such document");
                         }

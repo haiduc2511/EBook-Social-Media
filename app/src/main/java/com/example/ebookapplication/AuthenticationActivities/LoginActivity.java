@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.ebookapplication.R;
 import com.example.ebookapplication.Activities.StartActivity;
+import com.example.ebookapplication.Utils.FirebaseHelper;
 import com.example.ebookapplication.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
-        auth = FirebaseAuth.getInstance();
+        auth = FirebaseHelper.getInstance().getAuth();
         setContentView(binding.getRoot());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.login), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

@@ -13,6 +13,7 @@ import androidx.lifecycle.AndroidViewModel;
 
 import com.example.ebookapplication.Database.AppRepo;
 import com.example.ebookapplication.BookModel;
+import com.example.ebookapplication.Utils.FirebaseHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -24,7 +25,7 @@ import java.util.concurrent.ExecutionException;
 
 public class BookViewModel extends AndroidViewModel {
     private static final String COLLECTION_NAME = "books";
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db = FirebaseHelper.getInstance().getDb();
 
     private AppRepo appRepo;
 

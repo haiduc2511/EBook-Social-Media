@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
 import com.example.ebookapplication.Database.AppRepo;
+import com.example.ebookapplication.Utils.FirebaseHelper;
 import com.example.ebookapplication.Utils.NumberUtilsForDuc;
 import com.example.ebookapplication.PageModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,7 +18,7 @@ import java.util.concurrent.ExecutionException;
 
 public class PageViewModel extends AndroidViewModel {
     private static final String COLLECTION_NAME = "pages";
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db = FirebaseHelper.getInstance().getDb();
 
     private AppRepo appRepo;
 

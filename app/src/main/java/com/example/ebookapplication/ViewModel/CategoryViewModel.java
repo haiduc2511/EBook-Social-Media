@@ -8,13 +8,14 @@ import androidx.lifecycle.AndroidViewModel;
 import com.example.ebookapplication.BookRatingModel;
 import com.example.ebookapplication.CategoryModel;
 import com.example.ebookapplication.PageModel;
+import com.example.ebookapplication.Utils.FirebaseHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 public class CategoryViewModel extends AndroidViewModel {
     private static final String COLLECTION_NAME = "categories";
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db = FirebaseHelper.getInstance().getDb();
 
 
     public CategoryViewModel(@NonNull Application application) {

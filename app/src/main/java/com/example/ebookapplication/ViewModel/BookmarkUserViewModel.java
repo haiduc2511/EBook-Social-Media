@@ -6,19 +6,17 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
 import com.example.ebookapplication.BookmarkModel;
-import com.example.ebookapplication.CategoryModel;
-import com.example.ebookapplication.PageModel;
 import com.example.ebookapplication.Utils.FirebaseHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class BookmarkViewModel extends AndroidViewModel {
-    private static final String COLLECTION_NAME = "bookmarks";
+public class BookmarkUserViewModel extends AndroidViewModel {
+    private static final String COLLECTION_NAME = "bookmarkUsers";
     private final FirebaseFirestore db = FirebaseHelper.getInstance().getDb();
 
 
-    public BookmarkViewModel(@NonNull Application application) {
+    public BookmarkUserViewModel(@NonNull Application application) {
         super(application);
     }
 

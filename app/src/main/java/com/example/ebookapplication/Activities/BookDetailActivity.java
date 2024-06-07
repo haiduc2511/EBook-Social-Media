@@ -167,6 +167,11 @@ public class BookDetailActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        binding.fabAddBookmark.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AddBookmarkActivity.class);
+            intent.putExtra("book", bookModel);
+            startActivity(intent);
+        });
 
 
 

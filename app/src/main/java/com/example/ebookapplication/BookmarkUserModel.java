@@ -4,17 +4,23 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 public class BookmarkUserModel implements Parcelable{
-    String bookmarkId;
-    String userId;
-    boolean liked;
-    boolean saved;
+    @NonNull
+    public String buFirebaseId;
+    public String bookmarkId;
+    public String userId;
+    public boolean liked;
+    public boolean saved;
+
 
 
     public BookmarkUserModel() {
     }
 
     protected BookmarkUserModel(Parcel in) {
+        buFirebaseId = in.readString();
         bookmarkId = in.readString();
         userId = in.readString();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -27,6 +33,7 @@ public class BookmarkUserModel implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(buFirebaseId);
         dest.writeString(bookmarkId);
         dest.writeString(userId);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -42,21 +49,23 @@ public class BookmarkUserModel implements Parcelable{
         return 0;
     }
 
-    public static final Parcelable.Creator<BookmarkModel> CREATOR = new Parcelable.Creator<BookmarkModel>() {
+    public static final Parcelable.Creator<BookmarkUserModel> CREATOR = new Parcelable.Creator<BookmarkUserModel>() {
         @Override
-        public BookmarkModel createFromParcel(Parcel in) {
-            return new BookmarkModel(in);
+        public BookmarkUserModel createFromParcel(Parcel in) {
+            return new BookmarkUserModel(in);
         }
 
         @Override
-        public BookmarkModel[] newArray(int size) {
-            return new BookmarkModel[size];
+        public BookmarkUserModel[] newArray(int size) {
+            return new BookmarkUserModel[size];
         }
     };
 
+    @NonNull
     @Override
     public String toString() {
         return "BookmarkModel{" +
+                "buFirebaseId='" + buFirebaseId + '\'' +
                 "bookmarkId='" + bookmarkId + '\'' +
                 ", userId='" + userId + '\'' +
                 ", liked='" + liked + '\'' +

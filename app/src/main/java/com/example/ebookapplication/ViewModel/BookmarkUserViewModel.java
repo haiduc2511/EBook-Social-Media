@@ -5,7 +5,10 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
+import com.example.ebookapplication.BookModel;
 import com.example.ebookapplication.BookmarkModel;
+import com.example.ebookapplication.BookmarkUserModel;
+import com.example.ebookapplication.UserModel;
 import com.example.ebookapplication.Utils.FirebaseHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,26 +24,26 @@ public class BookmarkUserViewModel extends AndroidViewModel {
     }
 
 
-    public void addBookmarkFirebase(BookmarkModel bookmarkModel, OnCompleteListener<Void> onCompleteListener) {
+    public void addBookmarkUserFirebase(BookmarkUserModel bookmarkUserModel, OnCompleteListener<Void> onCompleteListener) {
         String id = db.collection(COLLECTION_NAME).document().getId(); // Generate a new ID
-        bookmarkModel.bmFirebaseId = id;
-        db.collection(COLLECTION_NAME).document(id).set(bookmarkModel).addOnCompleteListener(onCompleteListener);
+        bookmarkUserModel.buFirebaseId = id;
+        db.collection(COLLECTION_NAME).document(id).set(bookmarkUserModel).addOnCompleteListener(onCompleteListener);
     }
 
 
     // Read all bookmarks
-    public void getBookmarksFirebase(OnCompleteListener<QuerySnapshot> onCompleteListener) {
+    public void getBookmarkUsersFirebase(OnCompleteListener<QuerySnapshot> onCompleteListener) {
         db.collection(COLLECTION_NAME).get().addOnCompleteListener(onCompleteListener);
     }
 
 
     // Update a bookmarkModel
-    public void updateBookmarkFirebase(String id, BookmarkModel bookmarkModel, OnCompleteListener<Void> onCompleteListener) {
+    public void updateBookmarkUserFirebase(String id, BookmarkModel bookmarkModel, OnCompleteListener<Void> onCompleteListener) {
         db.collection(COLLECTION_NAME).document(id).set(bookmarkModel).addOnCompleteListener(onCompleteListener);
     }
 
     // Delete a bookmarkModel
-    public void deleteBookmarkFirebase(String id, OnCompleteListener<Void> onCompleteListener) {
+    public void deleteBookmarkUserFirebase(String id, OnCompleteListener<Void> onCompleteListener) {
         db.collection(COLLECTION_NAME).document(id).delete().addOnCompleteListener(onCompleteListener);
     }
 

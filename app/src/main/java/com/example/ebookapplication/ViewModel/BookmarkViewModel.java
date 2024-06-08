@@ -23,10 +23,11 @@ public class BookmarkViewModel extends AndroidViewModel {
     }
 
 
-    public void addBookmarkFirebase(BookmarkModel bookmarkModel, OnCompleteListener<Void> onCompleteListener) {
+    public String addBookmarkFirebase(BookmarkModel bookmarkModel, OnCompleteListener<Void> onCompleteListener) {
         String id = db.collection(COLLECTION_NAME).document().getId(); // Generate a new ID
         bookmarkModel.bmFirebaseId = id;
         db.collection(COLLECTION_NAME).document(id).set(bookmarkModel).addOnCompleteListener(onCompleteListener);
+        return id;
     }
 
 
@@ -35,6 +36,10 @@ public class BookmarkViewModel extends AndroidViewModel {
         db.collection(COLLECTION_NAME).get().addOnCompleteListener(onCompleteListener);
     }
 
+    // Read all bookmarks from user
+    public void getBookRatingsByUserIdFirebase(String uId, OnCompleteListener<QuerySnapshot> onCompleteListener) {
+        db.collection(COLLECTION_NAME).whereEqualTo("userId", uId).get().addOnCompleteListener(onCompleteListener);
+    }
 
     // Update a bookmarkModel
     public void updateBookmarkFirebase(String id, BookmarkModel bookmarkModel, OnCompleteListener<Void> onCompleteListener) {

@@ -32,7 +32,7 @@ public class BookRatingViewModel extends AndroidViewModel {
         db.collection(COLLECTION_NAME).document(id).set(bookRatingModel).addOnCompleteListener(onCompleteListener);
     }
 
-    // Read all pages from book
+    // Read all bookratings from book
     public void getBookRatingsByBookIdFirebase(String bId, OnCompleteListener<QuerySnapshot> onCompleteListener) {
         db.collection(COLLECTION_NAME).whereEqualTo("bookId", bId).get().addOnCompleteListener(onCompleteListener);
     }

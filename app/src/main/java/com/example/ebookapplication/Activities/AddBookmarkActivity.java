@@ -13,8 +13,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ebookapplication.BookModel;
 import com.example.ebookapplication.BookmarkModel;
+import com.example.ebookapplication.BookmarkUserModel;
 import com.example.ebookapplication.R;
+import com.example.ebookapplication.Utils.FirebaseHelper;
 import com.example.ebookapplication.ViewModel.BookViewModel;
+import com.example.ebookapplication.ViewModel.BookmarkUserViewModel;
 import com.example.ebookapplication.ViewModel.BookmarkViewModel;
 import com.example.ebookapplication.databinding.ActivityAddBookBinding;
 import com.example.ebookapplication.databinding.ActivityAddBookmarkBinding;
@@ -24,7 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class AddBookmarkActivity extends AppCompatActivity {
     ActivityAddBookmarkBinding binding;
-    BookViewModel bookViewModel;
+    BookmarkUserViewModel bookmarkUserViewModel;
     BookmarkViewModel bookmarkViewModel;
     BookModel bookModel;
     @Override
@@ -44,7 +47,7 @@ public class AddBookmarkActivity extends AppCompatActivity {
 
     private void getData() {
         bookModel = getIntent().getParcelableExtra("book");
-        bookViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookViewModel.class);
+        bookmarkUserViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookmarkUserViewModel.class);
         bookmarkViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookmarkViewModel.class);
     }
     private void initUI() {
@@ -53,10 +56,19 @@ public class AddBookmarkActivity extends AppCompatActivity {
             bookmarkModel.bookId = bookModel.bFirebaseId;
             bookmarkModel.userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
             bookmarkModel.bookmarkName = binding.etBookmarkName.getText().toString();
-            bookmarkViewModel.addBookmarkFirebase(bookmarkModel, new OnCompleteListener<Void>() {
+            String bookmarkId = bookmarkViewModel.addBookmarkFirebase(bookmarkModel, new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     Toast.makeText(AddBookmarkActivity.this, "Add bookmark to Firebase successfully", Toast.LENGTH_SHORT).show();
+                }
+            });
+            BookmarkUserModel bookmarkUserModel = new BookmarkUserModel();
+            bookmarkUserModel.bookmarkId = bookmarkId;
+            bookmarkUserModel.userId = FirebaseHelper.getInstance().getAuth().getCurrentUser().getUid();
+            bookmarkUserViewModel.addBookmarkUserFirebase(bookmarkUserModel, new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Toast.makeText(AddBookmarkActivity.this, "Add bookmarkUser to Firebase successfully", Toast.LENGTH_SHORT).show();
                 }
             });
         });

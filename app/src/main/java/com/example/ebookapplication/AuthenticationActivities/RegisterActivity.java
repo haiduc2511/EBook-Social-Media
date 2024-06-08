@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.ebookapplication.R;
 import com.example.ebookapplication.UserModel;
+import com.example.ebookapplication.Utils.FirebaseHelper;
 import com.example.ebookapplication.databinding.ActivityRegisterBinding;
 import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,8 +35,8 @@ public class RegisterActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        auth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
+        auth = FirebaseHelper.getInstance().getAuth();
+        db = FirebaseHelper.getInstance().getDb();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.register), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

@@ -18,13 +18,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ebookapplication.BookModel;
 import com.example.ebookapplication.BookRatingModel;
+import com.example.ebookapplication.BookmarkModel;
 import com.example.ebookapplication.CategoryModel;
 import com.example.ebookapplication.UserCategoryModel;
+import com.example.ebookapplication.Utils.FirebaseHelper;
 import com.example.ebookapplication.Utils.MathUtilsForDuc;
 import com.example.ebookapplication.R;
 import com.example.ebookapplication.Utils.SharedPrefManager;
 import com.example.ebookapplication.ViewModel.BookRatingViewModel;
 import com.example.ebookapplication.ViewModel.BookViewModel;
+import com.example.ebookapplication.ViewModel.BookmarkViewModel;
 import com.example.ebookapplication.ViewModel.CategoryViewModel;
 import com.example.ebookapplication.ViewModel.UserCategoryViewModel;
 import com.example.ebookapplication.databinding.ActivityBookDetailBinding;
@@ -41,6 +44,7 @@ public class BookDetailActivity extends AppCompatActivity {
     BookModel bookModel;
     ActivityBookDetailBinding binding;
     BookRatingViewModel bookRatingViewModel;
+    BookmarkViewModel bookmarkViewModel;
     CategoryViewModel categoryViewModel;
     UserCategoryViewModel userCategoryViewModel;
     List<BookRatingModel> bookRatingList;
@@ -68,6 +72,7 @@ public class BookDetailActivity extends AppCompatActivity {
         bookRatingViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookRatingViewModel.class);
         categoryViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(CategoryViewModel.class);
         userCategoryViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(UserCategoryViewModel.class);
+        bookmarkViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookmarkViewModel.class);
         categoryViewModel.getCategoryByIdFirebase(bookModel.bookCategory, new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -168,9 +173,25 @@ public class BookDetailActivity extends AppCompatActivity {
         });
 
         binding.fabAddBookmark.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AddBookmarkActivity.class);
-            intent.putExtra("book", bookModel);
-            startActivity(intent);
+            bookmarkViewModel.getBookmarksByUserIdAndBookIdFirebase(FirebaseHelper.getInstance().getAuth().getCurrentUser().getUid(), bookModel.bFirebaseId, new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        List<BookmarkModel> bookmarkModelList = task.getResult().toObjects(BookmarkModel.class);
+                        if (bookmarkModelList.size() == 0) {
+                            Intent intent = new Intent(BookDetailActivity.this, AddBookmarkActivity.class);
+                            intent.putExtra("book", bookModel);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(BookDetailActivity.this, "You've already added a bookmark", Toast.LENGTH_SHORT).show();
+                        }
+                        
+                    } else {
+                        Log.w(TAG, "Error getting bookmarkModel by userId", task.getException());
+                    }
+                }
+            });
+            
         });
 
 

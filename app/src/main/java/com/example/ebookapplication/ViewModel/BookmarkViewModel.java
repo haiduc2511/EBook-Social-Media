@@ -37,8 +37,15 @@ public class BookmarkViewModel extends AndroidViewModel {
     }
 
     // Read all bookmarks from user
-    public void getBookRatingsByUserIdFirebase(String uId, OnCompleteListener<QuerySnapshot> onCompleteListener) {
+    public void getBookmarksByUserIdFirebase(String uId, OnCompleteListener<QuerySnapshot> onCompleteListener) {
         db.collection(COLLECTION_NAME).whereEqualTo("userId", uId).get().addOnCompleteListener(onCompleteListener);
+    }
+
+    public void getBookmarksByUserIdAndBookIdFirebase(String uId, String bId, OnCompleteListener<QuerySnapshot> onCompleteListener) {
+        db.collection(COLLECTION_NAME)
+                .whereEqualTo("userId", uId)
+                .whereEqualTo("bookId", bId)
+                .get().addOnCompleteListener(onCompleteListener);
     }
 
     // Update a bookmarkModel

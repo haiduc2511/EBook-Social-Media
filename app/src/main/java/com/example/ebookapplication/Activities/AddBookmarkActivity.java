@@ -69,6 +69,7 @@ public class AddBookmarkActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     Toast.makeText(AddBookmarkActivity.this, "Add bookmarkUser to Firebase successfully", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
                 }
             });
         });

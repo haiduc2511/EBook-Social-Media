@@ -67,7 +67,7 @@ public class UserActivity extends AppCompatActivity {
         binding.rvBookmarks.setAdapter(bookmarkAdapter);
 
         bookmarkViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookmarkViewModel.class);
-        bookmarkViewModel.getBookRatingsByUserIdFirebase(uid, new OnCompleteListener<QuerySnapshot>() {
+        bookmarkViewModel.getBookmarksByUserIdFirebase(uid, new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {

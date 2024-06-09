@@ -10,9 +10,11 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ebookapplication.Activities.OtherUserActivity;
+import com.example.ebookapplication.Activities.UserActivity;
 import com.example.ebookapplication.BookRatingModel;
 import com.example.ebookapplication.PageModel;
 import com.example.ebookapplication.R;
+import com.example.ebookapplication.Utils.FirebaseHelper;
 import com.example.ebookapplication.databinding.ItemBookRatingBinding;
 import com.example.ebookapplication.databinding.ItemPageBinding;
 
@@ -45,9 +47,16 @@ public class BookRatingAdapter extends RecyclerView.Adapter<BookRatingAdapter.Bo
             BookRatingModel bookRatingModel = bookRatingModelList.get(position);
             holder.binding.setBookRatingModel(bookRatingModel);
             holder.binding.ivUserAvatar.setOnClickListener(v -> {
-                Intent intent = new Intent(context, OtherUserActivity.class);
-                intent.putExtra("user", bookRatingModel.userId);
-                context.startActivity(intent);
+                if (bookRatingModel.userId.equals(FirebaseHelper.getInstance().getAuth().getCurrentUser().getUid())) {
+                    Intent intent = new Intent(context, UserActivity.class);
+                    intent.putExtra("user", bookRatingModel.userId);
+                    context.startActivity(intent);
+                } else {
+                    Intent intent = new Intent(context, OtherUserActivity.class);
+                    intent.putExtra("user", bookRatingModel.userId);
+                    context.startActivity(intent);
+                }
+
             });
         }
     }

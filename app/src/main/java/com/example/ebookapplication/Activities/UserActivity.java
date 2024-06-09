@@ -73,6 +73,7 @@ public class UserActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     List<BookmarkModel> bookmarkModelList = task.getResult().toObjects(BookmarkModel.class);
                     bookmarkAdapter.setBookmarks(bookmarkModelList);
+                    binding.tvBookmarkNum.setText(String.valueOf(bookmarkModelList.size()) + "\n posts");
                     for (BookmarkModel bookmarkModel : bookmarkModelList) {
                         Log.d(TAG, bookmarkModel.toString());
                     }

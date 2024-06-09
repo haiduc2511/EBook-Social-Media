@@ -64,6 +64,7 @@ public class AddBookActivity extends AppCompatActivity {
                 bookModel.bookTitle = binding.etBookTitle.getText().toString();
                 bookModel.authorName = binding.etAuthorName.getText().toString();
                 bookModel.numberOfPages = 0;
+                bookModel.bookCategory = selectedCategory.cFirebaseId;
                 bookModel.bookSummary = binding.etSummary.getText().toString();
                 Toast.makeText(this, bookModel.toString(), Toast.LENGTH_SHORT).show();
                 bookViewModel.addBookFirebase(bookModel, new OnCompleteListener<Void>() {

@@ -56,6 +56,7 @@ public class StartActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         initCurrentBook();
+        initDataAndAdapter();
     }
 
     private void initCurrentBook() {
@@ -68,6 +69,7 @@ public class StartActivity extends AppCompatActivity {
             binding.tvRecentAuthorName.setText("You haven't start reading");
         } else {
             try {
+                binding.ivRecentBookCover.setImageResource(R.drawable.im_book_cover_3);
                 currentBook = bookViewModel.getBook(Integer.parseInt(bookId));
                 binding.tvRecentBookName.setText(currentBook.bookTitle);
                 binding.tvRecentAuthorName.setText(currentBook.authorName);

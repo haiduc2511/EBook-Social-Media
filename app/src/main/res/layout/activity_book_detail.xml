@@ -13,7 +13,8 @@
     <ScrollView
         android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/wp_background_3">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -38,6 +39,7 @@
                 android:textStyle="bold"
                 android:textSize="30sp"
                 android:gravity="center"
+                android:textColor="@color/white"
                 android:text="@{bookModel.bookTitle}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text='@{"Authors name: " + bookModel.authorName}'
+                android:textColor="@color/white"
+                android:text='@{"Author: " + bookModel.authorName}'
                 app:layout_constraintBottom_toTopOf="@+id/cl_book_detail"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +65,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
+                android:textColor="@color/black"
                 android:text='@{"Summary\n" + bookModel.bookSummary}'
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -84,26 +88,22 @@
                 android:id="@+id/fab_download_book"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:clickable="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/fab_add_page"
-                app:layout_constraintTop_toBottomOf="@+id/tv_book_summary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fab_book_rating"
                 app:srcCompat="@drawable/baseline_save_24" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab_book_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:clickable="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/fab_download_book"
-                app:layout_constraintTop_toBottomOf="@id/tv_book_summary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fab_add_bookmark"
                 app:srcCompat="@drawable/baseline_star_rate_24" />
 
             <androidx.constraintlayout.widget.Guideline

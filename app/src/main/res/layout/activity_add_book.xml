@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="571dp" />
+        app:layout_constraintGuide_begin="495dp" />
 
     <Spinner
         android:id="@+id/sp_category"

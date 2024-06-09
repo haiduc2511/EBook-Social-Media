@@ -11,12 +11,15 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Activities.UserActivity">
+        tools:context=".Activities.UserActivity"
+        android:background="@drawable/wp_background_6">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_logout"
-            android:layout_width="54dp"
-            android:layout_height="47dp"
+            android:layout_width="52dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -36,10 +39,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add book"
-            app:layout_constraintBottom_toTopOf="@+id/guideline10"
-            app:layout_constraintEnd_toStartOf="@+id/fab_logout"
-            app:layout_constraintStart_toEndOf="@+id/bt_add_category"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button"/>
 
         <TextView
             android:id="@+id/tv_user_email"
@@ -53,23 +55,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_user_avatar"
-            android:layout_width="61dp"
-            android:layout_height="57dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            app:cardCornerRadius="20dp"
-            android:elevation="5dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline10">
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="61dp"
-                android:layout_height="57dp"
-                app:srcCompat="@drawable/baseline_person_24" />
-
-        </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline10"
@@ -78,73 +63,135 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="56dp" />
 
-        <TextView
-            android:id="@+id/tv_user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:textStyle="bold"
-            android:text='@{userModel.userName}'
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_user_avatar" />
 
         <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            android:weightSum="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline11"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cv_user_avatar"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline10">
-            <TextView
-                android:id="@+id/tv_bookmark_num"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:textSize="15sp"
-                android:text="30\n bài viết"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:layout_weight="1"/>
-            <TextView
-                android:id="@+id/tv_follower_num"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:textSize="15sp"
-                android:text='@{userModel.userFollowers + "\n người theo dõi "}'
-                android:ellipsize="end"
-                android:gravity="center"
-                android:layout_weight="1"/>
-            <TextView
-                android:id="@+id/tv_following_num"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:textSize="15sp"
-                android:text="30\n người theo dõi"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:layout_weight="1"/>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_user_avatar"
+                    android:layout_width="61dp"
+                    android:layout_height="57dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    app:cardCornerRadius="20dp"
+                    android:elevation="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="61dp"
+                        android:layout_height="57dp"
+                        app:srcCompat="@drawable/baseline_person_24" />
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="260dp"
+                    android:layout_height="59dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cv_user_avatar"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_bookmark_num"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:text=" 0\n posts"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_follower_num"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:text='@{userModel.userFollowers + "\n followers "}'
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_following_num"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:text="0\n following"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text='@{userModel.userName}'
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_user_avatar" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
         <Button
             android:id="@+id/bt_add_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Addcate"
-            app:layout_constraintBottom_toTopOf="@+id/guideline10"
-            app:layout_constraintStart_toEndOf="@+id/tv_user_email"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="Addcategory"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_bookmarks"
-            android:layout_width="350dp"
-            android:layout_height="470dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="390dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="10dp"
+            android:elevation="5dp"
+            app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_name" />
+            app:layout_constraintTop_toTopOf="@+id/guideline11">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+        <androidx.constraintlayout.widget.Barrier
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="216dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

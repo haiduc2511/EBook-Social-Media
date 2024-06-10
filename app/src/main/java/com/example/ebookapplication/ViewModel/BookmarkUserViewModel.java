@@ -31,18 +31,24 @@ public class BookmarkUserViewModel extends AndroidViewModel {
     }
 
 
-    // Read all bookmarks
+    // Read all bookmarkUser
     public void getBookmarkUsersFirebase(OnCompleteListener<QuerySnapshot> onCompleteListener) {
         db.collection(COLLECTION_NAME).get().addOnCompleteListener(onCompleteListener);
     }
+    // Read all bookmarkUser from bookmarkId and userId
+    public void getBookmarkUserByBookmarkIdAndUserIdFirebase(String bmId, String uId, OnCompleteListener<QuerySnapshot> onCompleteListener) {
+        db.collection(COLLECTION_NAME)
+                .whereEqualTo("bookmarkId", bmId)
+                .whereEqualTo("userId", uId)
+                .get().addOnCompleteListener(onCompleteListener);
+    }
 
-
-    // Update a bookmarkModel
+    // Update a bookmarkUser
     public void updateBookmarkUserFirebase(String id, BookmarkModel bookmarkModel, OnCompleteListener<Void> onCompleteListener) {
         db.collection(COLLECTION_NAME).document(id).set(bookmarkModel).addOnCompleteListener(onCompleteListener);
     }
 
-    // Delete a bookmarkModel
+    // Delete a bookmarkUser
     public void deleteBookmarkUserFirebase(String id, OnCompleteListener<Void> onCompleteListener) {
         db.collection(COLLECTION_NAME).document(id).delete().addOnCompleteListener(onCompleteListener);
     }

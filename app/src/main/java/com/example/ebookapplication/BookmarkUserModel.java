@@ -64,7 +64,7 @@ public class BookmarkUserModel implements Parcelable{
     @NonNull
     @Override
     public String toString() {
-        return "BookmarkModel{" +
+        return "BookmarkUserModel{" +
                 "buFirebaseId='" + buFirebaseId + '\'' +
                 "bookmarkId='" + bookmarkId + '\'' +
                 ", userId='" + userId + '\'' +

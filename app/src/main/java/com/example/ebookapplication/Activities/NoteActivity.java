@@ -56,15 +56,9 @@ public class NoteActivity extends AppCompatActivity {
         bookmarkModel = getIntent().getParcelableExtra("bookmark");
         noteViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(NoteViewModel.class);
         binding.setBookmarkModel(bookmarkModel);
-        TextView textView = findViewById(R.id.textView111);
-//        textView.setText("Notes from " + bookmarkModel.bookmarkName);
-        binding.textView111.setText("dung dc binding r");
         NoteAdapter noteAdapter = new NoteAdapter(this);
         binding.rvNoteList.setLayoutManager(new LinearLayoutManager(this));
         binding.rvNoteList.setAdapter(noteAdapter);
-//        RecyclerView recyclerView = findViewById(R.id.rv_note_list);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setAdapter(noteAdapter);
         noteViewModel.getNotesByBookmarkIdFirebase(bookmarkModel.bmFirebaseId, new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {

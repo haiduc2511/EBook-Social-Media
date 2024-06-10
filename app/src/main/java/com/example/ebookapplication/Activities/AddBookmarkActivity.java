@@ -51,6 +51,7 @@ public class AddBookmarkActivity extends AppCompatActivity {
         bookmarkViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(BookmarkViewModel.class);
     }
     private void initUI() {
+        binding.etBookmarkName.setText(bookModel.bookTitle);
         binding.btAddBookmark.setOnClickListener(v -> {
             BookmarkModel bookmarkModel = new BookmarkModel();
             bookmarkModel.bookId = bookModel.bFirebaseId;

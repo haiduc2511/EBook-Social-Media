@@ -101,6 +101,11 @@ public class ReadingActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     pages = task.getResult().toObjects(PageModel.class);
                     pageAdapter.setPages(pages);
+                    if (pages == null || pages.isEmpty()) {
+                        binding.fabAddPageNote.setOnClickListener(v -> {
+                            Toast.makeText(ReadingActivity.this, "This book doesn't contain any pages", Toast.LENGTH_SHORT).show();
+                        });
+                    }
                     for (PageModel page : pages) {
                         Log.d(TAG, page.toString());
                     }

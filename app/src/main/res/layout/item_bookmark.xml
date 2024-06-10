@@ -14,7 +14,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_main"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="190dp"
             android:layout_margin="5dp"
             android:elevation="5dp"
             app:cardCornerRadius="20dp"
@@ -29,8 +29,9 @@
 
                 <ImageView
                     android:id="@+id/iv_bookmark_cover"
-                    android:layout_width="100dp"
-                    android:layout_height="150dp"
+                    android:layout_width="110dp"
+                    android:layout_height="140dp"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -38,14 +39,17 @@
 
                 <TextView
                     android:id="@+id/tv_bookmark_name"
-                    android:layout_width="70dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="4dp"
                     android:layout_marginBottom="16dp"
                     android:ellipsize="middle"
                     android:gravity="center"
-                    android:maxLines="1"
+                    android:maxLines="2"
                     android:text='@{bookmarkModel.bookmarkName}'
+                    android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

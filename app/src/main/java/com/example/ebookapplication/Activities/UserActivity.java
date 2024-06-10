@@ -42,6 +42,7 @@ import java.util.List;
 public class UserActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    UserModel user;
     ActivityUserBinding binding;
     BookmarkViewModel bookmarkViewModel;
 
@@ -57,7 +58,7 @@ public class UserActivity extends AppCompatActivity {
             return insets;
         });
         getCurrentUser(db, mAuth);
-        initUi();
+//        initUi();
 
     }
 
@@ -124,6 +125,11 @@ public class UserActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AddCategoryActivity.class);
             startActivity(intent);
         });
+        if (user.userEmail.length() > 10) {
+            binding.tvUserEmail.setTextSize(20);
+        } else if (user.userEmail.length() > 20) {
+            binding.tvUserEmail.setTextSize(15);
+        }
     }
 
     public void getCurrentUser(FirebaseFirestore db, FirebaseAuth mAuth) {
@@ -133,8 +139,9 @@ public class UserActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
-                            UserModel user = document.toObject(UserModel.class);
+                            user = document.toObject(UserModel.class);
                             binding.setUserModel(user);
+                            initUi();
                             getBookmarks(user.uId);
                         } else {
                             Log.d("Firestore", "No such document");

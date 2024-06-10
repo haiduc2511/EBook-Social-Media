@@ -36,7 +36,7 @@ public class NoteViewModel extends AndroidViewModel {
 
     // Read all notes from bookmark
     public void getNotesByBookmarkIdFirebase(String bmId, OnCompleteListener<QuerySnapshot> onCompleteListener) {
-        db.collection(COLLECTION_NAME).whereEqualTo("bmFirebaseId", bmId).get().addOnCompleteListener(onCompleteListener);
+        db.collection(COLLECTION_NAME).whereEqualTo("bookmarkId", bmId).get().addOnCompleteListener(onCompleteListener);
     }
 
     public void getNotesByBookmarkIdAndPageIdFirebase(String bmId, String pId, OnCompleteListener<QuerySnapshot> onCompleteListener) {

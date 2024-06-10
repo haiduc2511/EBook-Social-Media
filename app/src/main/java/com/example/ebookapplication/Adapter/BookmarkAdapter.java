@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ebookapplication.Activities.BookDetailActivity;
 import com.example.ebookapplication.Activities.BookListActivity;
 import com.example.ebookapplication.Activities.BookRecommendListActivity;
+import com.example.ebookapplication.Activities.NoteActivity;
 import com.example.ebookapplication.Activities.ReadingActivity;
 import com.example.ebookapplication.BookModel;
 import com.example.ebookapplication.BookmarkModel;
@@ -53,7 +54,9 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Bookma
             BookmarkModel bookmarkModel = bookmarkModelList.get(position);
             holder.binding.setBookmarkModel(bookmarkModel);
             holder.binding.cvMain.setOnClickListener(v -> {
-                Toast.makeText(context, "You are clicking on bookmark " + bookmarkModel.bookmarkName, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, NoteActivity.class);
+                intent.putExtra("bookmark", bookmarkModelList.get(position));
+                context.startActivity(intent);
             });
         }
     }

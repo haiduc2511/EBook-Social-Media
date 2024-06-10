@@ -50,7 +50,7 @@ public class NoteModel implements Parcelable {
 
     @Override
     public String toString() {
-        return "BookmarkModel{" +
+        return "NoteModel{" +
                 "nFirebaseId='" + nFirebaseId + '\'' +
                 ", bookmarkId='" + bookmarkId + '\'' +
                 ", pageId='" + pageId + '\'' +

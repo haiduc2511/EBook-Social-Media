@@ -22,10 +22,17 @@ public class UserCategoryViewModel extends AndroidViewModel {
     }
 
 
-    public void getUserCategoryByIdFirebase(String userId, String categoryId, OnCompleteListener<QuerySnapshot> onCompleteListener) {
+    public void getUserCategoryByUserIdAndCategoryIdFirebase(String userId, String categoryId, OnCompleteListener<QuerySnapshot> onCompleteListener) {
         db.collection(COLLECTION_NAME)
                 .whereEqualTo("userId", userId)
                 .whereEqualTo("categoryId", categoryId)
+                .get()
+                .addOnCompleteListener(onCompleteListener);
+    }
+
+    public void getUserCategoryByUserIdFirebase(String userId, OnCompleteListener<QuerySnapshot> onCompleteListener) {
+        db.collection(COLLECTION_NAME)
+                .whereEqualTo("userId", userId)
                 .get()
                 .addOnCompleteListener(onCompleteListener);
     }

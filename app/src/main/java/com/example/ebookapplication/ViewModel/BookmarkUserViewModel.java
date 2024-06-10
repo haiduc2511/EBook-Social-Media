@@ -44,8 +44,8 @@ public class BookmarkUserViewModel extends AndroidViewModel {
     }
 
     // Update a bookmarkUser
-    public void updateBookmarkUserFirebase(String id, BookmarkModel bookmarkModel, OnCompleteListener<Void> onCompleteListener) {
-        db.collection(COLLECTION_NAME).document(id).set(bookmarkModel).addOnCompleteListener(onCompleteListener);
+    public void updateBookmarkUserFirebase(String id, BookmarkUserModel bookmarkUserModel, OnCompleteListener<Void> onCompleteListener) {
+        db.collection(COLLECTION_NAME).document(id).set(bookmarkUserModel).addOnCompleteListener(onCompleteListener);
     }
 
     // Delete a bookmarkUser

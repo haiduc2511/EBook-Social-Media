@@ -94,18 +94,28 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
-        bookmarkUserViewModel.updateBookmarkUserFirebase(bookmarkUserModel.buFirebaseId, bookmarkModel, new OnCompleteListener<Void>() {
+    protected void onStop() {
+        bookmarkUserViewModel.updateBookmarkUserFirebase(bookmarkUserModel.buFirebaseId, bookmarkUserModel, new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Log.w(TAG, bookmarkUserModel.toString(), task.getException());
                 Toast.makeText(NoteActivity.this, "updated interaction", Toast.LENGTH_SHORT).show();
             }
         });
-        super.onPause();
+        super.onStop();
     }
 
     private void initUI() {
+        if (!bookmarkUserModel.saved) {
+            binding.floatingActionButton.setImageResource(R.drawable.baseline_bookmark_border_24);
+        } else {
+            binding.floatingActionButton.setImageResource(R.drawable.baseline_bookmark_24);
+        }
+        if (!bookmarkUserModel.liked) {
+            binding.floatingActionButton2.setImageResource(R.drawable.baseline_favorite_border_24);
+        } else {
+            binding.floatingActionButton2.setImageResource(R.drawable.baseline_favorite_24);
+        }
         binding.floatingActionButton.setOnClickListener(v -> {
             if (bookmarkUserModel.saved) {
                 binding.floatingActionButton.setImageResource(R.drawable.baseline_bookmark_border_24);
@@ -142,7 +152,6 @@ public class NoteActivity extends AppCompatActivity {
                     List<NoteModel> noteModelList = task.getResult().toObjects(NoteModel.class);
                     noteAdapter.setNotes(noteModelList);
                     for (NoteModel noteModel : noteModelList) {
-                        Toast.makeText(NoteActivity.this, noteModel.noteContent, Toast.LENGTH_SHORT).show();
                         Log.d(TAG, noteModel.toString());
                     }
                 } else {

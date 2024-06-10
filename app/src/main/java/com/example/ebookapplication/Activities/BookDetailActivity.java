@@ -131,7 +131,7 @@ public class BookDetailActivity extends AppCompatActivity {
         binding.ivBookCover.setOnClickListener(v -> {
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
             String categoryId = bookModel.bookCategory;
-            userCategoryViewModel.getUserCategoryByIdFirebase(userId, categoryId, new OnCompleteListener<QuerySnapshot>() {
+            userCategoryViewModel.getUserCategoryByUserIdAndCategoryIdFirebase(userId, categoryId, new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful() && task.getResult() != null) {

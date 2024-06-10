@@ -125,6 +125,11 @@ public class UserActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AddCategoryActivity.class);
             startActivity(intent);
         });
+        binding.tvSeeUserInsight.setOnClickListener(v -> {
+            Intent intent = new Intent(this, UserInsightActivity.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+        });
         if (user.userEmail.length() > 10) {
             binding.tvUserEmail.setTextSize(20);
         } else if (user.userEmail.length() > 20) {

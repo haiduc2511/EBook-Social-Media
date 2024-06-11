@@ -50,6 +50,7 @@ public class UserInsightActivity extends AppCompatActivity {
         UserModel userModel = getIntent().getParcelableExtra("user");
 
 
+        userCategoryViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(UserCategoryViewModel.class);
         categoryViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(CategoryViewModel.class);
         categoryViewModel.getCategoriesFirebase(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -59,30 +60,24 @@ public class UserInsightActivity extends AppCompatActivity {
                     for (CategoryModel categoryModel : categoryModels) {
                         Log.d(TAG, categoryModel.toString());
                     }
+                    userCategoryViewModel.getUserCategoryByUserIdFirebase(userModel.uId, new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                userCategoryModels = task.getResult().toObjects(UserCategoryModel.class);
+                                for (UserCategoryModel userCategoryModel : userCategoryModels) {
+                                    Log.d(TAG, userCategoryModel.toString());
+                                }
+                                binding.tvUserCategory.setText(StringUtilsForDuc.listInsightToString(userCategoryModels, categoryModels));
+                            } else {
+                                Log.w(TAG, "Error getting bookmarkModel by userId", task.getException());
+                            }
+                        }
+                    });
                 } else {
                     Log.w(TAG, "Error getting bookmarkModel by userId", task.getException());
                 }
             }
-        });
-
-
-        userCategoryViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(UserCategoryViewModel.class);
-        userCategoryViewModel.getUserCategoryByUserIdFirebase(userModel.uId, new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    userCategoryModels = task.getResult().toObjects(UserCategoryModel.class);
-                    for (UserCategoryModel userCategoryModel : userCategoryModels) {
-                        Log.d(TAG, userCategoryModel.toString());
-                    }
-                } else {
-                    Log.w(TAG, "Error getting bookmarkModel by userId", task.getException());
-                }
-            }
-        });
-
-        binding.btUpdateInsight.setOnClickListener(v -> {
-            binding.tvUserCategory.setText(StringUtilsForDuc.listInsightToString(userCategoryModels, categoryModels));
         });
 
     }

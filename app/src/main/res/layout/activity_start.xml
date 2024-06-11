@@ -88,7 +88,7 @@
 
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_greetings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -181,6 +181,15 @@
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
+    <LinearLayout
+        android:id="@+id/ll_sv_search"
+        android:layout_width="350dp"
+        android:layout_height="42dp"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fab_user_activity" />
     <SearchView
         android:id="@+id/sv_search"
         android:layout_width="350dp"

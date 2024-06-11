@@ -11,6 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.ebookapplication.Activities.PasswordResetActivity;
 import com.example.ebookapplication.R;
 import com.example.ebookapplication.Activities.StartActivity;
 import com.example.ebookapplication.Utils.FirebaseHelper;
@@ -45,7 +46,15 @@ public class LoginActivity extends AppCompatActivity {
             String password = binding.etPassword.getText().toString();
             String email = binding.etEmail.getText().toString();
             Toast.makeText(LoginActivity.this, "click bt login", Toast.LENGTH_SHORT).show();
-            signIn(email, password);
+            if (password.length() < 9) {
+                Toast.makeText(this, "Mật khẩu chưa đủ 8 kí tự", Toast.LENGTH_SHORT).show();
+            } else {
+                signIn(email, password);
+            }
+        });
+        binding.tvLoginForgotPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(this, PasswordResetActivity.class);
+            startActivity(intent);
         });
     }
 

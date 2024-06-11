@@ -54,7 +54,11 @@ public class RegisterActivity extends AppCompatActivity {
         binding.btRegister.setOnClickListener(v -> {
             String email = binding.etEmail.getText().toString();
             String password = binding.etPassword.getText().toString();
-            createAccount(email, password);
+            if (binding.etPasswordConfirm.getText().toString().equals(password)) {
+                createAccount(email, password);
+            } else {
+                Toast.makeText(this, "Password doesn't match password confirm", Toast.LENGTH_SHORT).show();
+            }
         });
 
     }

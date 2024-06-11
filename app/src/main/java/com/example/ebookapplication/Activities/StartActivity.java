@@ -87,7 +87,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        binding.svSearch.setOnSearchClickListener(v -> {
+        binding.svSearch.setOnClickListener(v -> {
             Toast.makeText(this, "Chức năng này chưa được mở khoá, xin vui lòng đợi đồ án 2 :>", Toast.LENGTH_SHORT).show();
         });
         binding.tvSeeMoreDownloaded.setOnClickListener(v -> {

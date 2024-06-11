@@ -53,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:text="@{bookRatingModel.star}"
+                    android:text='@{bookRatingModel.star + "★"}'
                     app:layout_constraintStart_toEndOf="@+id/iv_user_avatar"
                     app:layout_constraintTop_toTopOf="@+id/iv_user_avatar" />
 

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.EBookApplication"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.BookmarkRecommendListActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.PasswordResetActivity"
             android:exported="false" />
         <activity

@@ -13,7 +13,6 @@ public class BookCategoryModel implements Parcelable {
     public String bookId;
     public String categoryId;
 
-    public String categoryName;
     public BookCategoryModel() {
     }
 

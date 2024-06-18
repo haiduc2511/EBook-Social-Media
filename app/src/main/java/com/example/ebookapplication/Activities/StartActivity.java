@@ -102,12 +102,6 @@ public class StartActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-//        binding.button3.setOnClickListener(v -> {
-//            Toast.makeText(this, "vô Add Book Activity", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(StartActivity.this, AddBookActivity.class);
-//            startActivity(intent);
-//        });
-
         binding.tvSeeMoreRecommended.setOnClickListener(v -> {
             Toast.makeText(this, "vô lướt mạng xã hội sách Activity", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(StartActivity.this, BookRecommendListActivity.class);
@@ -126,7 +120,11 @@ public class StartActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     bookRecommendList = task.getResult().toObjects(BookModel.class);
-                    bookAdapterHorizontal.setBooks(bookRecommendList);
+                    if (bookRecommendList.size() >= 5) {
+                        bookAdapterHorizontal.setBooks(bookRecommendList.subList(0, 5));
+                    } else {
+                        bookAdapterHorizontal.setBooks(bookRecommendList);
+                    }
                     for (BookModel book : bookRecommendList) {
                         Log.d(TAG, book.toString());
                     }

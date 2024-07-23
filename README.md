@@ -1,7 +1,7 @@
 # EBookApplication
 
 EBookApplication is an Android application that allows users to register, login, read books, add bookmarks and notes, browse recommended books, download books, rate books, and save or love bookmarks. Admin users have additional capabilities to manage books and categories.
-
+https://github.com/haiduc2511/EBook-Social-Media/blob/master/images/ERD.png
 ## Features
 
 ### User Features
@@ -34,25 +34,40 @@ EBookApplication is an Android application that allows users to register, login,
 ### User
 
 - **Introduction Activity**: The initial screen users see when they open the app.
+https://github.com/haiduc2511/EBook-Social-Media/blob/master/images/M%C3%A0n%20h%C3%ACnh%20ch%C3%ADnh.jpg
 - **Registration Activity**: Screen for user registration.
+https://github.com/haiduc2511/EBook-Social-Media/blob/master/images/M%C3%A0n%20h%C3%ACnh%20%C4%91%C4%83ng%20k%C3%AD.jpg
 - **Login Activity**: Screen for user login.
+https://github.com/haiduc2511/EBook-Social-Media/blob/master/images/M%C3%A0n%20h%C3%ACnh%20%C4%91%C4%83ng%20nh%E1%BA%ADp.jpg
 - **Forgot Password Activity**: Screen for recovering forgotten passwords.
+
 - **Main Activity**: The main interface of the application after logging in.
+
 - **User Profile Activity**: Screen displaying the user's profile information.
+
 - **Downloaded Books Activity**: Screen showing books that the user has downloaded.
+
 - **Recommended Books Activity**: Screen for browsing recommended books.
+
 - **Book Details Activity**: Screen with detailed information about a book.
+
 - **Book Rating Activity**: Screen where users can rate books.
+
 - **Other User Profile Activity**: Screen displaying the profile of another user.
+
 - **Bookmarks Activity**: Screen showing the user's bookmarks.
+
 
 ### Admin
 
 - **Add Book Activity**: Screen for adding new books to the application.
+
 - **Add Book Category Activity**: Screen for adding new book categories.
+
 - **Add Book Page Activity**: Screen for adding pages to books.
 
 
+https://github.com/haiduc2511/EBook-Social-Media/blob/master/images/Package%20class%20diagram.png
 ## Installation and Setup
 
 ### Clone the Repository:

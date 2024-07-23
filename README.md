@@ -29,38 +29,28 @@ EBookApplication is an Android application that allows users to register, login,
 - **Room Database**: Used for storing downloaded books for offline access.
 
 
-## UI (Activities)
-### Đăng nhập và Đăng xuất
+## UI 
+### Login and Logout
 - [Login and Logout](https://drive.google.com/file/d/1atL05ABj5okVO8k00rjD2vraR0DkcHB-/view?usp=drive_link)
-
-### Đăng ký
+### Register
 - [Register](https://drive.google.com/file/d/1aroEOFwvsmF2wTEeDfqOwKPy3BHMmmHb/view?usp=sharing)
-
-### Đọc sách đã tải (tự động cập nhật sách đọc gần đây nhất)
+### Read Downloaded Books (automatically updates the most recently read books)
 - [Read Downloaded Books](https://drive.google.com/file/d/1b2Yf2sMJomoaZt3Lxf9XnFCcc_QP2a2N/view?usp=drive_link)
-
-### Thêm Note cho Bookmark
-- [Add Note for Bookmark](https://drive.google.com/file/d/1athRSkrtfj_kFnyqOH0beLcMJM4hQcNV/view?usp=drive_link)
-
-### Thêm Bookmark cho Sách
+### Add Note to Bookmark
+- [Add Note to Bookmark](https://drive.google.com/file/d/1athRSkrtfj_kFnyqOH0beLcMJM4hQcNV/view?usp=drive_link)
+### Add Bookmark for Book
 - [Add Bookmark for Book](https://drive.google.com/file/d/1azKSQQBlsHDNXvXEIKc_UMUHRDatY-h_/view?usp=drive_link)
-
-### Tải Sách
+### Download Book
 - [Download Book](https://drive.google.com/file/d/1b0U-urTYSKnAlPgneMShG2R1patKAtbm/view?usp=drive_link)
-
-### Đánh Giá Sách
+### Rate Book
 - [Rate Book](https://drive.google.com/file/d/1bAazzu_CxNYAcOYBGcwqyC7TfFD1iUeE/view?usp=drive_link)
-
-### Duyệt Tìm Sách Phù Hợp
+### Browse Suitable Books
 - [Browse Suitable Books](https://drive.google.com/file/d/1b4NdY_ti0frz6P2TJeO29ItVMUer2AnQ/view?usp=drive_link)
-
-### Duyệt Tìm Bookmark Phù Hợp và Tương Tác (tim và lưu như Tiktok realtime)
+### Browse and Interact with Bookmarks (like and save as on TikTok in real-time)
 - [Browse and Interact with Bookmarks](https://drive.google.com/file/d/1bMlAt6fp36cTVBCb8VGBQGBSdnJLFmMn/view?usp=drive_link)
-
-### Lưu Sở Thích Người Dùng Qua Tương Tác (Đọc Sách)
+### Save User Preferences via Interaction (Reading Books)
 - [Save User Preferences via Interaction](https://drive.google.com/file/d/1baIO90muSWoyaBsd-kfuFGrEMs3rOVh7/view?usp=drive_link)
 
-https://github.com/haiduc2511/EBook-Social-Media/blob/master/images/Package%20class%20diagram.png
 ## Installation and Setup
 
 ### Clone the Repository:

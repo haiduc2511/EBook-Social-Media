@@ -30,42 +30,35 @@ EBookApplication is an Android application that allows users to register, login,
 
 
 ## UI (Activities)
+### Đăng nhập và Đăng xuất
+- [Login and Logout](https://drive.google.com/file/d/1atL05ABj5okVO8k00rjD2vraR0DkcHB-/view?usp=drive_link)
 
-### User
+### Đăng ký
+- [Register](https://drive.google.com/file/d/1aroEOFwvsmF2wTEeDfqOwKPy3BHMmmHb/view?usp=sharing)
 
-- **Introduction Activity**: The initial screen users see when they open the app.
-![](https://github.com/haiduc2511/EBook-Social-Media/blob/master/images/M%C3%A0n%20h%C3%ACnh%20ch%C3%ADnh.jpg)
-- **Registration Activity**: Screen for user registration.
-![](https://github.com/haiduc2511/EBook-Social-Media/blob/master/images/M%C3%A0n%20h%C3%ACnh%20%C4%91%C4%83ng%20k%C3%AD.jpg)
-- **Login Activity**: Screen for user login.
-![](https://github.com/haiduc2511/EBook-Social-Media/blob/master/images/M%C3%A0n%20h%C3%ACnh%20%C4%91%C4%83ng%20nh%E1%BA%ADp.jpg)
-- **Forgot Password Activity**: Screen for recovering forgotten passwords.
-![]()
-- **Main Activity**: The main interface of the application after logging in.
-![]()
-- **User Profile Activity**: Screen displaying the user's profile information.
-![]()
-- **Downloaded Books Activity**: Screen showing books that the user has downloaded.
-![]()
-- **Recommended Books Activity**: Screen for browsing recommended books.
-![]()
-- **Book Details Activity**: Screen with detailed information about a book.
-![]()
-- **Book Rating Activity**: Screen where users can rate books.
-![]()
-- **Other User Profile Activity**: Screen displaying the profile of another user.
-![]()
-- **Bookmarks Activity**: Screen showing the user's bookmarks.
-![]()
+### Đọc sách đã tải (tự động cập nhật sách đọc gần đây nhất)
+- [Read Downloaded Books](https://drive.google.com/file/d/1b2Yf2sMJomoaZt3Lxf9XnFCcc_QP2a2N/view?usp=drive_link)
 
-### Admin
+### Thêm Note cho Bookmark
+- [Add Note for Bookmark](https://drive.google.com/file/d/1athRSkrtfj_kFnyqOH0beLcMJM4hQcNV/view?usp=drive_link)
 
-- **Add Book Activity**: Screen for adding new books to the application.
-![]()
-- **Add Book Category Activity**: Screen for adding new book categories.
-![]()
-- **Add Book Page Activity**: Screen for adding pages to books.
-![]()
+### Thêm Bookmark cho Sách
+- [Add Bookmark for Book](https://drive.google.com/file/d/1azKSQQBlsHDNXvXEIKc_UMUHRDatY-h_/view?usp=drive_link)
+
+### Tải Sách
+- [Download Book](https://drive.google.com/file/d/1b0U-urTYSKnAlPgneMShG2R1patKAtbm/view?usp=drive_link)
+
+### Đánh Giá Sách
+- [Rate Book](https://drive.google.com/file/d/1bAazzu_CxNYAcOYBGcwqyC7TfFD1iUeE/view?usp=drive_link)
+
+### Duyệt Tìm Sách Phù Hợp
+- [Browse Suitable Books](https://drive.google.com/file/d/1b4NdY_ti0frz6P2TJeO29ItVMUer2AnQ/view?usp=drive_link)
+
+### Duyệt Tìm Bookmark Phù Hợp và Tương Tác (tim và lưu như Tiktok realtime)
+- [Browse and Interact with Bookmarks](https://drive.google.com/file/d/1bMlAt6fp36cTVBCb8VGBQGBSdnJLFmMn/view?usp=drive_link)
+
+### Lưu Sở Thích Người Dùng Qua Tương Tác (Đọc Sách)
+- [Save User Preferences via Interaction](https://drive.google.com/file/d/1baIO90muSWoyaBsd-kfuFGrEMs3rOVh7/view?usp=drive_link)
 
 https://github.com/haiduc2511/EBook-Social-Media/blob/master/images/Package%20class%20diagram.png
 ## Installation and Setup

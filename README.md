@@ -28,6 +28,31 @@ EBookApplication is an Android application that allows users to register, login,
 - **MVVM Pattern**: Implemented to separate the user interface from the business logic and data handling.
 - **Room Database**: Used for storing downloaded books for offline access.
 
+
+## UI (Activities)
+
+### User
+
+- **Introduction Activity**: The initial screen users see when they open the app.
+- **Registration Activity**: Screen for user registration.
+- **Login Activity**: Screen for user login.
+- **Forgot Password Activity**: Screen for recovering forgotten passwords.
+- **Main Activity**: The main interface of the application after logging in.
+- **User Profile Activity**: Screen displaying the user's profile information.
+- **Downloaded Books Activity**: Screen showing books that the user has downloaded.
+- **Recommended Books Activity**: Screen for browsing recommended books.
+- **Book Details Activity**: Screen with detailed information about a book.
+- **Book Rating Activity**: Screen where users can rate books.
+- **Other User Profile Activity**: Screen displaying the profile of another user.
+- **Bookmarks Activity**: Screen showing the user's bookmarks.
+
+### Admin
+
+- **Add Book Activity**: Screen for adding new books to the application.
+- **Add Book Category Activity**: Screen for adding new book categories.
+- **Add Book Page Activity**: Screen for adding pages to books.
+
+
 ## Installation and Setup
 
 ### Clone the Repository:

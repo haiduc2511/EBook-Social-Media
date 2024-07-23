@@ -5,7 +5,7 @@ EBookApplication is an Android application that allows users to register, login,
 ## Features
 
 ### User Features
-
+![Use case diagram](images/use-case.jpg)
 - **Registration and Login**: Users can register and login using Firebase Authentication.
 - **Read Books**: Users can read books stored in the application.
 - **Add Bookmarks**: Users can add bookmarks to books they are reading.
